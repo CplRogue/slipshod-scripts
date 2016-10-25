@@ -1,2 +1,0 @@
-Total objects: 5488
-Total size: 2638.468 GBytes (2833033542547 Bytes)

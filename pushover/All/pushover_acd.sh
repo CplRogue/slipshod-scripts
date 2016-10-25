@@ -1,9 +1,9 @@
 #!/bin/bash
 
-acd_ls_msg=/home/mal/Scripts/pushover/All/msg.txt
-acd_total=/home/mal/Scripts/pushover/All/size.txt
-acd_movies=/home/mal/Scripts/pushover/All/size_movies.txt
-acd_series=/home/mal/Scripts/pushover/All/size_series.txt
+acd_ls_msg=/home/mal/Scripts/pushover/All/msg.text
+acd_total=/home/mal/Scripts/pushover/All/size.text
+acd_movies=/home/mal/Scripts/pushover/All/size_movies.text
+acd_series=/home/mal/Scripts/pushover/All/size_series.text
 pushover_app=/home/mal/Scripts/.dontsync/pushover_app_acd
 pushover_usr=/home/mal/Scripts/.dontsync/pushover_usr
 

@@ -1,12 +1,12 @@
 #!/bin/bash
 
-acd_ls_new=/home/mal/Scripts/pushover/Series/new.txt
-acd_ls_new_sort=/home/mal/Scripts/pushover/Series/new_sort.txt
-acd_ls_old_sort=/home/mal/Scripts/pushover/Series/old_sort.txt
-acd_ls_diff=/home/mal/Scripts/pushover/Series/diff.txt
-acd_ls_wc=/home/mal/Scripts/pushover/Series/wc.txt
-acd_ls_msg=/home/mal/Scripts/pushover/Series/msg.txt
-acd_size=/home/mal/Scripts/pushover/Series/size.txt
+acd_ls_new=/home/mal/Scripts/pushover/Series/new.text
+acd_ls_new_sort=/home/mal/Scripts/pushover/Series/new_sort.text
+acd_ls_old_sort=/home/mal/Scripts/pushover/Series/old_sort.text
+acd_ls_diff=/home/mal/Scripts/pushover/Series/diff.text
+acd_ls_wc=/home/mal/Scripts/pushover/Series/wc.text
+acd_ls_msg=/home/mal/Scripts/pushover/Series/msg.text
+acd_size=/home/mal/Scripts/pushover/Series/size.text
 pushover_app=/home/mal/Scripts/.dontsync/pushover_app_acd
 pushover_usr=/home/mal/Scripts/.dontsync/pushover_usr
 
