@@ -1,2 +1,2 @@
-cp -R /home/mal/.flexget /mnt/MrU/Backups/flexget
-cp -R /home/mal/Scripts /mnt/MrU/Backups/Scripts
+cp -R $HOME/.flexget /mnt/MrU/Backups/flexget
+cp -R $HOME/Scripts /mnt/MrU/Backups/Scripts

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 result=$HOME/Scripts/speedtest/results.text
-pushover_app=/home/mal/Scripts/.dontsync/pushover_app_speedtest
-pushover_usr=/home/mal/Scripts/.dontsync/pushover_usr
+pushover_app=$HOME/Scripts/.dontsync/pushover_app_speedtest
+pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 
 $HOME/Scripts/speedtest/speedtest_cli.py --secure --simple > $result
 

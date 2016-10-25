@@ -1,10 +1,10 @@
 #!/bin/bash
 
-dst=`cat /home/mal/Scripts/.dontsync/bysh_acct`
+dst=`cat $HOME/Scripts/.dontsync/bysh_acct`
 
 local_dir_tv=/mnt/MrU/Working/Seeding/Sickrage/
 local_dir_movies=/mnt/MrU/Working/Seeding/Movies/
-log=/home/mal/Scripts/logs/log.byte
+log=$HOME/Scripts/logs/log.byte
 remote_dir_tv=/home/hd24/pierus/torrents/completed/
 remote_dir_movies=/home/hd24/pierus/torrents/movies/
 

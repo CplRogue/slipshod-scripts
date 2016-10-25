@@ -1,12 +1,13 @@
 #!/bin/bash
 
-ExtIP=`cat /home/mal/Scripts/.dontsync/ExternalIP`
-wrExtIP=/home/mal/Scripts/.dontsync/ExternalIP
-msg=/home/mal/Scripts/myip/msg.text
-old=/home/mal/Scripts/myip/old.text
-diff=/home/mal/Scripts/myip/diff.text
-pushover_app=/home/mal/Scripts/.dontsync/pushover_app_homeip
-pushover_usr=/home/mal/Scripts/.dontsync/pushover_usr
+ExtIP=`cat $HOME/Scripts/.dontsync/ExternalIP`
+HOMEURL=`cat $HOME/Scripts/.dontsync/HomeURL`
+wrExtIP=$HOME/Scripts/.dontsync/ExternalIP
+msg=$HOME/Scripts/myip/msg.text
+old=$HOME/Scripts/myip/old.text
+diff=$HOME/Scripts/myip/diff.text
+pushover_app=$HOME/Scripts/.dontsync/pushover_app_homeip
+pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 
 mv $msg $old
 
@@ -14,17 +15,17 @@ echo ""
 
 #if [ `wget -q -O - checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//'` = $ExtIP ] ; then echo "matches" ; else echo "IP Addresses do not match"; fi
 
-HOMETHEWARESNET=`dig home.thewares.net +short`
+HOMEIP=`dig $HOMEURL +short`
 MYIP=`wget -q -O - checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//'`
 
 echo ""
 echo External IP Address is: $MYIP
-echo home.thewares.net is: $HOMETHEWARESNET
+echo $HOMEURL is: $HOMEIP
 echo ""
 
 echo "" > $msg
 echo External IP Address is: $MYIP >> $msg
-echo home.thewares.net is: $HOMETHEWARESNET >> $msg
+echo $HOMEURL is: $HOMEIP >> $msg
 echo "" >> $msg
 
 diff $msg $old > $diff

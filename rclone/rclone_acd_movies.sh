@@ -3,8 +3,8 @@
 
 local_dir_tv=/mnt/MrU/Videos/Series
 local_dir_movies=/mnt/MrU/Videos/Movies
-log=/home/mal/Scripts/logs/log.rclone_movies
-exclude=/home/mal/Scripts/rclone/.rclone_exclude
+log=$HOME/Scripts/logs/log.rclone_movies
+exclude=$HOME/Scripts/rclone/.rclone_exclude
 remote_dir_tv=acd:Videos/Series
 remote_dir_movies=acd:Videos/Movies
 

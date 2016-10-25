@@ -14,7 +14,7 @@ PARMS='--verbose --recursive --delete-during --perms --size-only --compress --pr
 #-h, --human-readable        output numbers in a human-readable format
 #--progress                  show progress during transfer
 #-n, --dry-run               perform a trial run with no changes made
-PWD='--password-file=/home/mal/Scripts/.dontsync/rsync_pswd'
+PWD='--password-file=$HOME/Scripts/.dontsync/rsync_pswd'
 LMT='--bwlimit=999'
 DEST0=LenoreMovies
 DEST1=LenoreTV

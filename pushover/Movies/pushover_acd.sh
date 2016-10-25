@@ -1,14 +1,14 @@
 #!/bin/bash
 
-acd_ls_new=/home/mal/Scripts/pushover/Movies/new.text
-acd_ls_new_sort=/home/mal/Scripts/pushover/Movies/new_sort.text
-acd_ls_old_sort=/home/mal/Scripts/pushover/Movies/old_sort.text
-acd_ls_diff=/home/mal/Scripts/pushover/Movies/diff.text
-acd_ls_wc=/home/mal/Scripts/pushover/Movies/wc.text
-acd_ls_msg=/home/mal/Scripts/pushover/Movies/msg.text
-acd_size=/home/mal/Scripts/pushover/Movies/size.text
-pushover_app=/home/mal/Scripts/.dontsync/pushover_app_acd
-pushover_usr=/home/mal/Scripts/.dontsync/pushover_usr
+acd_ls_new=$HOME/Scripts/pushover/Movies/new.text
+acd_ls_new_sort=$HOME/Scripts/pushover/Movies/new_sort.text
+acd_ls_old_sort=$HOME/Scripts/pushover/Movies/old_sort.text
+acd_ls_diff=$HOME/Scripts/pushover/Movies/diff.text
+acd_ls_wc=$HOME/Scripts/pushover/Movies/wc.text
+acd_ls_msg=$HOME/Scripts/pushover/Movies/msg.text
+acd_size=$HOME/Scripts/pushover/Movies/size.text
+pushover_app=$HOME/Scripts/.dontsync/pushover_app_acd
+pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 
 
 mv $acd_ls_new_sort $acd_ls_old_sort

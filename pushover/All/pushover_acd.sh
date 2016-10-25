@@ -1,11 +1,11 @@
 #!/bin/bash
 
-acd_ls_msg=/home/mal/Scripts/pushover/All/msg.text
-acd_total=/home/mal/Scripts/pushover/All/size.text
-acd_movies=/home/mal/Scripts/pushover/All/size_movies.text
-acd_series=/home/mal/Scripts/pushover/All/size_series.text
-pushover_app=/home/mal/Scripts/.dontsync/pushover_app_acd
-pushover_usr=/home/mal/Scripts/.dontsync/pushover_usr
+acd_ls_msg=$HOME/Scripts/pushover/All/msg.text
+acd_total=$HOME/Scripts/pushover/All/size.text
+acd_movies=$HOME/Scripts/pushover/All/size_movies.text
+acd_series=$HOME/Scripts/pushover/All/size_series.text
+pushover_app=$HOME/Scripts/.dontsync/pushover_app_acd
+pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 
 echo "Collection Total Size"
 /usr/bin/rclone size acd:Videos > $acd_total

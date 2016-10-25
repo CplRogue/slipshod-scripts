@@ -24,7 +24,7 @@ if [[ -n $(pidof -xo $$ rsync) ]]; then
 else
     echo ""
     echo No Rsync running
-#    exec "/home/mal/Scripts/drobocopy/dcopy_fast_lenore.sh" &
+#    exec "$HOME/Scripts/drobocopy/dcopy_fast_lenore.sh" &
     echo ""
 #    echo Started Rsync Fast
     echo ""

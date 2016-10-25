@@ -2,7 +2,7 @@
 
 
 local_dir_tv=/mnt/MrU/Videos/Series
-log=/home/mal/Scripts/logs/log.rclone
+log=$HOME/Scripts/logs/log.rclone
 exclude=.DS_Store
 remote_dir_tv=acd:Videos/Series
 
