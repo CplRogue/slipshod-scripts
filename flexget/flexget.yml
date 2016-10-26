@@ -1,0 +1,196 @@
+templates:
+  showrsstv:
+    exists_series: /mnt/MrU/Videos/Series/
+    series:
+      - About a Boy
+      - Adventure Time
+      - Anger Management
+      - Anthony Bourdain Parts Unknown
+      - Believe
+      - Black Sails
+      - Castle (2009)
+      - Cosmos A Spacetime Odyssey
+      - Covert Affairs
+      - Doctor Who (2005)
+      - Downton Abbey
+      - Elementary
+      - Falling Skies
+      - Fargo
+      - Game of Thrones:
+          quality: 720p
+      - Graceland
+      - Growing Up Fisher
+      - Hawaii Five-0
+      - Homeland
+      - House of Cards (2013)
+      - How I Met Your Mother
+      - Justified
+      - Longmire
+      - Mad Men
+      - Marvel's Agents of S.H.I.E.L.D.
+      - Masters of Sex
+      - Modern Family
+      - Mom
+      - MythBusters
+      - New Girl
+      - Parenthood (2010)
+      - Person of Interest
+      - Portlandia
+      - Revolution
+      - Royal Pains
+      - Sherlock
+      - Silicon Valley
+      - South Park
+      - Strike Back
+      - Suburgatory
+      - Suits
+      - The Americans (2013)
+      - The Big Bang Theory
+      - The Blacklist
+      - The Crazy Ones
+      - The Good Wife
+      - The Mentalist
+      - The Middle
+      - The Newsroom (2012)
+      - The Simpsons
+      - The Walking Dead
+      - Top Gear:
+          quality: 720p
+      - True Blood
+      - Two and a Half Men
+      - Vikings
+      - White Collar
+
+  showrsstvdaily:
+    exists_series: /mnt/MrU/Daily/
+    series:
+      - Conan (2010)
+      - Last Week Tonight with John Oliver
+      - Late Show with David Letterman
+      - The Colbert Report
+      - The Daily Show with Jon Stewart
+      - The Late Late Show with Craig Ferguson
+      - The Tonight Show Starring Jimmy Fallon
+
+  kickass:
+    download: $HOME/Downloads/
+    accept_all: yes
+
+tasks:
+  ShowRSS:
+    set:
+      content_filename: "{{series_name}}.{{series_id}}.{{quality}}"
+      movedone: "/mnt/MrU/Videos/Series/{{series_name}}/"
+      label: ShowRSS
+      queuetop: yes
+      main_file_only: yes
+    rss: http://showrss.info/rss.php?user_id=<Replace>&hd=null&proper=1
+    template: showrsstv
+    deluge:
+      path: "$HOME/Torrents/deluge/"
+      username: localclient
+      password: <Replace>
+    pushover:
+      userkey: <Replace>
+      apikey: <Replace>
+      title: ShowRSS - {{series_name}}
+      message: Episode {{series_id}}
+      priority: -1 
+      sound: incoming
+
+  ShowRSSDaily:
+    set:
+      content_filename: "{{series_name}}.{{series_id}}.{{quality}}"
+      movedone: "/mnt/MrU/Daily/{{series_name}}/"
+      label: ShowRSSDaily
+      queuetop: yes
+      main_file_only: yes
+    rss: http://showrss.info/rss.php?user_id=<Replace>&hd=null&proper=1
+    template: showrsstvdaily
+    deluge:
+      path: "$HOME/Torrents/deluge/"
+      username: localclient
+      password: <Replace>
+
+  Kickass_Personal:
+    rss: http://kickass.to/bookmarks/rss/personal/<Replace>/
+    template: kickass
+    pushover:
+      userkey: <Replace>
+      apikey: <Replace>
+      priority: -1
+      sound: incoming
+
+  Kickass_YIFY:
+    set:
+      label: YIFY
+    rss: http://kickass.to/usearch/YIFY%201080p%20x264%202013%20OR%202014/?rss=1 
+    template: kickass
+    content_filter:
+      require:
+        - '*.m4v'
+        - '*.mp4'
+      reject:
+        - '*.mkv'
+        - '*.rar'
+        - '*.wmv'
+    pushover:
+      userkey: <Replace>
+      apikey: <Replace>
+      priority: -1 
+
+  Kids_TV:
+    set:
+      content_filename: "{{series_name}}.{{series_id}}.{{quality}}"
+      movedone: "/mnt/MrU/Videos/Series_Kids/{{series_name}}/"
+      label: Kids
+      queuetop: yes
+      main_file_only: yes
+    inputs:
+      - rss: http://kat.ph/tv/?rss=1
+      - rss: http://ezrss.it/feed/
+      - rss: http://rss.bt-chat.com/?group=3
+      - rss: http://extratorrent.com/rss.xml?cid=8
+    content_filter:
+      require:
+        - '*.m4v'
+        - '*.mp4'
+    regexp:
+      from: title
+      reject:
+        - NLSUBS
+        - NL-SUBS
+        - FRENCH
+        - ITA
+        - GERMAN
+        - SWE
+    configure_series:
+      from:
+        trakt_list:
+          username: <Replace with Username>
+          password: <Password>
+          api_key: <Replace>
+          series: watchlist
+      settings:
+        propers: yes
+    deluge:
+      path: "$HOME/Torrents/deluge/"
+      username: localclient
+      password: <Password>
+    pushover:
+      userkey: <Replace>
+      apikey: <Replace>
+      title: New Kids Show - {{series_name}}
+      message: Episode {{series_id}}
+      priority: -1 
+      sound: incoming
+
+  Kids_RSS_ANTFARM:
+    set:
+      label: Kids
+    rss: http://kickass.to/usearch/ANT%20Farm%20category%3Atv%20is_safe%3A1/?rss=1 
+    template: kickass
+    pushover:
+      userkey: <Replace>
+      apikey: <Replace>
+      priority: -1 
