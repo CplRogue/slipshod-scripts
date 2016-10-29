@@ -2,3 +2,5 @@
 logs/
 *.text
 speedtest_cli.py
+.DS_Store
+.env
