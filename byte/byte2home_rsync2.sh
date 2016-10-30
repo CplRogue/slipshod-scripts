@@ -1,12 +1,13 @@
 #!/bin/bash
 
 dst=`cat $HOME/Scripts/.dontsync/bysh_acct2`
+remotehome=`cat $HOME/Scripts/.dontsync/bysh_home2`
 
 local_dir_tv=/mnt/MrU/Working/Seeding/Sickrage/
 local_dir_movies=/mnt/MrU/Working/Seeding/Movies/
-log=$HOME/Scripts/logs/log.byte
-remote_dir_tv=$HOME/torrents/completed/
-remote_dir_movies=$HOME/torrents/movies/
+log=$HOME/Scripts/logs/log.byte2home2
+remote_dir_tv=$remotehome/torrents/completed/
+remote_dir_movies=$remotehome/torrents/movies/
 
 /usr/bin/killall rsync
 sleep 30
