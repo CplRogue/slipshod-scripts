@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dst=`cat $HOME/Scripts/.dontsync/bysh_acct`
+dst=`cat $HOME/Scripts/.dontsync/bysh_acct2`
 
 local_dir_movies=/mnt/MrU/Videos/Movies/
 log=$HOME/Scripts/logs/log.byte_movies

@@ -5,8 +5,8 @@ dst=`cat $HOME/Scripts/.dontsync/bysh_acct`
 local_dir_tv=/mnt/MrU/Working/Seeding/Sickrage/
 local_dir_movies=/mnt/MrU/Working/Seeding/Movies/
 log=$HOME/Scripts/logs/log.byte
-remote_dir_tv=/home/hd24/pierus/torrents/completed/
-remote_dir_movies=/home/hd24/pierus/torrents/movies/
+remote_dir_tv=$HOME/torrents/completed/
+remote_dir_movies=$HOME/torrents/movies/
 
 /usr/bin/killall rsync
 sleep 30
