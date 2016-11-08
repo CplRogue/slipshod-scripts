@@ -10,7 +10,9 @@ remote_dir_tv=$remotehome/torrents/completed/
 remote_dir_movies=$remotehome/torrents/movies/
 
 /usr/bin/killall rsync
-sleep 30
+sleep 15
+/usr/bin/killall rsync
+sleep 15
 
 date >> $log
 echo "TV Sync" >> $log
