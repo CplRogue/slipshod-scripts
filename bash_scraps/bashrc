@@ -127,7 +127,7 @@ echo ""
 
 WHO=`/usr/bin/whoami`
 HOST=`/bin/hostname`    
-LASTLOGIP=`/usr/bin/lastlog -u $USERNAME | awk '{print $3}' | grep -v From`    
+LASTLOGIP=`/usr/bin/lastlog -u $USER | awk '{print $3}' | grep -v From`    
 
 curl -s \
   --form-string "token=" \
