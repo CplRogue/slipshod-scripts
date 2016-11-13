@@ -38,6 +38,7 @@ cat $new_files | cut -d "/" -f 8- | grep -v '^[0-9]' | sed 's/<//' | cut -d " " 
 curl -s \
   --form-string "token=`cat $pushover_app`" \
   --form-string "user=`cat $pushover_usr`" \
+  --form-string "priority=0" \
   --form-string "message=`cat $mesg`" \
   https://api.pushover.net/1/messages.json
 
