@@ -12,6 +12,7 @@ echo $result
 curl -s \
   --form-string "token=`cat $pushover_app`" \
   --form-string "user=`cat $pushover_usr`" \
+  --form-string "priority=-2" \
   --form-string "message=`cat $result`" \
   https://api.pushover.net/1/messages.json
 
