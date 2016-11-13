@@ -33,6 +33,7 @@ echo "$acd_ls_diff has data."
 curl -s \
   --form-string "token=`cat $pushover_app`" \
   --form-string "user=`cat $pushover_usr`" \
+  --form-string "priority=-2" \
   --form-string "message=`cat $acd_ls_msg`" \
   https://api.pushover.net/1/messages.json
 
