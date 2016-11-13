@@ -17,6 +17,7 @@ echo "Sending message to Pushover"
 curl -s \
   --form-string "token=`cat $pushover_app`" \
   --form-string "user=`cat $pushover_usr`" \
+  --form-string "priority=1" \
   --form-string "message=`cat $msg`" \
   https://api.pushover.net/1/messages.json
 
