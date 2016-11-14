@@ -24,7 +24,7 @@ echo "$new_files has data."
 #If new files run rclone
 date >> $log
 echo "TV Sync" >> $log
-/usr/local/bin/rclone --stats 5m0s --exclude $exclude --log-file $log copy $local_dir_tv $remote_dir_tv
+/usr/local/bin/rclone -v --stats 5m0s --exclude $exclude --log-file $log copy $local_dir_tv $remote_dir_tv
 date >> $log
 echo "done" >> $log
 echo "Finished > Exiting" >> $log
@@ -38,7 +38,7 @@ cat $new_files | cut -d "/" -f 8- | grep -v '^[0-9]' | sed 's/<//' | cut -d " " 
 curl -s \
   --form-string "token=`cat $pushover_app`" \
   --form-string "user=`cat $pushover_usr`" \
-  --form-string "priority=0" \
+  --form-string "priority=-2" \
   --form-string "message=`cat $mesg`" \
   https://api.pushover.net/1/messages.json
 

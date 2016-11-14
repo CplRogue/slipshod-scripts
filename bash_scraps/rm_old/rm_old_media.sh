@@ -1,8 +1,8 @@
 #!/bin/bash
 
-AGE_List=7 
-#AGE_Remove should be 3 more than Age_List
-AGE_Remove=13
+AGE_List=90 
+#AGE_Remove should be 5 more than Age_List
+AGE_Remove=95
 log=$HOME/scripts/logs/log.rm_old_files
 list=$HOME/scripts/bash_scraps/rm_old/list_old_files.text
 list_number=$HOME/scripts/bash_scraps/rm_old/number.text
@@ -22,20 +22,22 @@ echo "$list has data."
 curl -s \
   --form-string "token=`cat $pushover_app`" \
   --form-string "user=`cat $pushover_usr`" \
+  --form-string "priority=0" \
   --form-string "message=`cat $mesg`" \
   https://api.pushover.net/1/messages.json
 
 else
-echo "$list is empty."
+#echo "$list is empty."
 exit
 fi ;
 
 #Remove files
-date >> $log
 echo "Delete Media Files  older than `echo $AGE_Remove` Days" >> $log
 echo "" >> $log
-#/usr/bin/find $HOME/media/* -mtime +$AGE -type f -delete >> $log
-/usr/bin/find $HOME/media/* -mtime +$AGE_Remove -type f >> $log
+echo $list >> $log
+echo "" >> $log
+/usr/bin/find $HOME/media/* -mtime +$AGE_Remove -type f -delete >> $log
+#/usr/bin/find $HOME/media/* -mtime +$AGE_Remove -type f >> $log
 
 echo "" >> $log
 date >> $log
