@@ -1,11 +1,9 @@
 #!/bin/bash
 
-
 local_dir_tv=/mnt/MrU/Videos/Series
-log=$HOME/Scripts/logs/log.rclone
+log=$HOME/Scripts/logs/log.rclone_tv
 exclude=.DS_Store
 remote_dir_tv=acd:Videos/Series
-
 
 date >> $log
 echo "TV Sync" >> $log
@@ -16,4 +14,3 @@ date >> $log
 echo "done" >> $log
 echo "Finished > Exiting" >> $log
 echo "" >> $log
-
