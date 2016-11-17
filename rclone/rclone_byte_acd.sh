@@ -24,7 +24,7 @@ echo "$new_files has data."
 #If new files run rclone
 date >> $log
 echo "TV Sync" >> $log
-/usr/local/bin/rclone -v --stats 5m0s --exclude $exclude --log-file $log copy $local_dir_tv $remote_dir_tv
+/usr/local/bin/rclone --stats 5m0s --exclude $exclude --log-file $log copy $local_dir_tv $remote_dir_tv
 date >> $log
 echo "done" >> $log
 echo "Finished > Exiting" >> $log
