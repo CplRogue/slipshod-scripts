@@ -8,7 +8,7 @@ remote_dir_tv=acd:Videos/Series
 date >> $log
 echo "TV Sync" >> $log
 
-/usr/bin/rclone -v --stats 5m0s --exclude $exclude --log-file $log copy $local_dir_tv $remote_dir_tv
+/usr/bin/rclone --stats 5m0s --exclude $exclude --log-file $log copy $local_dir_tv $remote_dir_tv
 
 date >> $log
 echo "done" >> $log

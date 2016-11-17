@@ -12,7 +12,7 @@ remote_dir_movies=acd:Videos/Movies
 date >> $log
 echo "Movies Sync" >> $log
 
-/usr/bin/rclone -v --stats 5m0s --transfers 3 --exclude-from $exclude --log-file $log copy $local_dir_movies $remote_dir_movies
+/usr/bin/rclone --stats 5m0s --transfers 3 --exclude-from $exclude --log-file $log copy $local_dir_movies $remote_dir_movies
 
 date >> $log
 echo "done" >> $log
