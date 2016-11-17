@@ -21,7 +21,7 @@ cat $acd_ls_diff | wc -l > $acd_ls_wc
 /usr/bin/rclone size acd:Videos/Movies > $acd_size
 
 echo "`cat $acd_ls_wc` New File(s) in ACD/Movies:" > $acd_ls_msg
-cat $acd_ls_diff >> $acd_ls_msg
+cat $acd_ls_diff | cut -d "/" -f 2- >> $acd_ls_msg
 echo "" >> $acd_ls_msg
 cat $acd_size >> $acd_ls_msg
 
