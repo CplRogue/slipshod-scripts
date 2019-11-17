@@ -1,13 +1,53 @@
 #!/bin/bash
 
-oldfile=/Volumes/Media/Videos/TeslaCam/SavedClips/SavedClips.mp4
+#
+# https://github.com/ehendrix23/tesla_dashcam
+#
 
-#/Applications/tesla_dashcam -h
-#/Applications/tesla_dashcam --check_for_update
+oldfile=/mnt/MrU/Working/TeslaCam/Completed/SavedClips.mp4
 
-#/Applications/tesla_dashcam --no-check_for_update --layout WIDESCREEN --merge --output /Volumes/Media/Videos/TeslaCam/SavedClips /Volumes/Media/Working/TeslaCam/New
-/Applications/tesla_dashcam --no-check_for_update --layout DIAMOND --merge --output /Volumes/Media/Videos/TeslaCam/SavedClips /Volumes/Media/Working/TeslaCam/New
+#/home/mal/.pyenv/shims/tesla_dashcam -h
+#/home/mal/.pyenv/shims/tesla_dashcam --check_for_update
 
-mv $oldfile ${oldfile}_$(date +%F-%T).mp4
+/home/mal/.pyenv/shims/tesla_dashcam --no-check_for_update --no-notification --motion_only --layout DIAMOND --mirror --skip_existing --temp_dir /home/mal/Scripts/dashcam/tmp --output /mnt/MrU/Working/TeslaCam/Completed /mnt/MrU/Working/TeslaCam/New
 
-mv /Volumes/Media/Working/TeslaCam/New/* /Volumes/Media/Working/TeslaCam/Old/SavedClips/
+mv $oldfile /mnt/MrU/Videos/TeslaCam/SavedClips/${oldfile}_$(date +%F-%T).mp4
+
+#Sorting Movies
+BASE=/mnt/MrU/Working/TeslaCam/Completed
+PLEX=/mnt/MrU/Videos/TeslaCam
+
+echo " "
+echo "Base Directory:"
+echo $BASE
+echo "Plex Directory:"
+echo $PLEX
+echo " "
+
+for file in $BASE/*.mp4 ; do
+    mfile=$( echo "$file" | cut -c 37-79 )
+    yfol=$( echo "$file" | cut -c 37-40 )
+    mfol=$( echo "$file" | cut -c 37-43 )
+    dfol=$( echo "$file" | cut -c 37-46 )
+    mkdir -p $PLEX/${yfol}/${mfol}/${dfol}
+    mv --verbose $BASE/"$mfile" $PLEX/${yfol}/${mfol}/${dfol}/"$mfile"
+done
+
+echo " "
+echo "Filename:"
+echo $mfile
+echo "Year:"
+echo $yfol
+echo "Month:"
+echo $mfol
+echo "Day:"
+echo $dfol
+
+
+mkdir -p /mnt/MrU/Working/TeslaCam/Old/${yfol}/${mfol}
+mv /mnt/MrU/Working/TeslaCam/New/* /mnt/MrU/Working/TeslaCam/Old/${yfol}/${mfol}
+rmdir /mnt/MrU/Videos/TeslaCam/*.mp/*.mp4/*.mp4
+rmdir /mnt/MrU/Videos/TeslaCam/*.mp/*.mp4
+rmdir /mnt/MrU/Videos/TeslaCam/*.mp
+
+exit
