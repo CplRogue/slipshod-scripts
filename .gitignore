@@ -4,3 +4,4 @@ logs/
 speedtest_cli.py
 .DS_Store
 .env
+latest.dep
