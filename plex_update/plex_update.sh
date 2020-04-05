@@ -9,3 +9,5 @@ date >> $log
 wget $link -O latest.dep
 dpkg -i latest.dep
 
+#sudo /usr/sbin/service plexmediaserver start
+#sudo /usr/sbin/service plexmediaserver stop
