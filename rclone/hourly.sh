@@ -2,7 +2,7 @@
 
 log=$HOME/Scripts/logs/log.rclone.initial
 message=$HOME/Scripts/rclone/tmp/last.msg
-size=$HOME/Scripts/rclone/tmp/size
+size=$HOME/Scripts/rclone/tmp/last.size
 pushover_app=$HOME/Scripts/.dontsync/pushover_app_rclone
 pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 
