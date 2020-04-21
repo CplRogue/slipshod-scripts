@@ -17,7 +17,7 @@ pushover_app=$HOME/Scripts/.dontsync/pushover_app_rclone
 pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 
 #rclone Backups
-rclone sync $local_dir_backups $remote_dir_backups --backup-dir=bac:Delete/Backups --log-file=$log --log-level $level --exclude $exclude
+/usr/bin/rclone sync $local_dir_backups $remote_dir_backups --backup-dir=bac:Delete/Backups --log-file=$log --log-level $level --exclude $exclude
 msg1=`cat $log | grep Transferred | tail -2 | head -1 | cut -f1,3 -d,`
 msg2=`cat $log | grep Transferred | tail -1`
 msg3=`cat $log | grep Elapsed | tail -1`
