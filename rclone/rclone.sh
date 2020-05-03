@@ -5,6 +5,7 @@ level=INFO
 exclude=.DS_Store
 message=$HOME/Scripts/rclone/tmp/last.msg
 size=$HOME/Scripts/rclone/tmp/last.size
+mrusize=$HOME/Scripts/size/tmp/last.size
 local_dir_backups=/mnt/MrU/Backups/JottaCloud_Backups
 local_dir_mature=/mnt/MrU/Videos/Mature
 local_dir_movies=/mnt/MrU/Videos/Movies
