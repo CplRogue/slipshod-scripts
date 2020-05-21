@@ -42,7 +42,7 @@ curl -s \
   https://api.pushover.net/1/messages.json > /dev/null 2>&1
 
 #rclone tv series
-#rclone sync $local_dir_tv $remote_dir_tv --backup-dir=bac:Delete/Videos/Series --log-file=$log --log-level $level --stats 5m --exclude $exclude
+#rclone sync $local_dir_tv $remote_dir_tv --backup-dir=bac:Delete/Videos/Series --log-file=$log --log-level $level --stats 5m --exclude $exclude --min-age 7d
 msg1=`cat $log | grep Transferred | tail -2 | head -1 | cut -f1,3 -d,`
 msg2=`cat $log | grep Transferred | tail -1`
 msg3=`cat $log | grep Elapsed | tail -1`
@@ -68,7 +68,7 @@ curl -s \
   https://api.pushover.net/1/messages.json > /dev/null 2>&1
 
 #rclone mature
-#rclone sync $local_dir_mature $remote_dir_mature --backup-dir=bac:Delete/Videos/Mature --log-file=$log --log-level $level --stats 5m --exclude $exclude
+#rclone sync $local_dir_mature $remote_dir_mature --backup-dir=bac:Delete/Videos/Mature --log-file=$log --log-level $level --stats 5m --exclude $exclude --min-age 7d
 msg1=`cat $log | grep Transferred | tail -2 | head -1 | cut -f1,3 -d,`
 msg2=`cat $log | grep Transferred | tail -1`
 msg3=`cat $log | grep Elapsed | tail -1`
