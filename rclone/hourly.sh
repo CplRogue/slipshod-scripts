@@ -11,11 +11,17 @@ msg1=`cat $log | grep Transferred | tail -2 | head -1 | cut -f1,3 -d,`
 msg2=`cat $log | grep Transferred | tail -1`
 msg3=`cat $log | grep Elapsed | tail -1`
 msg4=`cat $log | grep Transferred | tail -2 | head -1 | cut -f4 -d,`
-/usr/bin/rclone size bac:Videos/Series > $size
+#/usr/bin/rclone size bac:Videos/Mature > $size
+/usr/bin/rclone size bac:Videos/Movies > $size
+#/usr/bin/rclone size bac:Videos/Series > $size
 msg5=`cat $size | head -1`
 msg6=`cat $size | tail -1 | cut -f1-4 -d ' '`
-msg7=`cat $mrusize | grep Series`
-echo "::Data::  bac:Videos/Series" > $message
+#msg7=`cat $mrusize | grep Mature`
+msg7=`cat $mrusize | grep Movies`
+#msg7=`cat $mrusize | grep Series`
+#echo "::Data::  bac:Videos/Mature" > $message
+echo "::Data::  bac:Videos/Movies" > $message
+#echo "::Data::  bac:Videos/Series" > $message
 echo $msg1 >> $message
 echo $msg2 >> $message
 echo $msg3 >> $message

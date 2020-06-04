@@ -3,7 +3,7 @@
 dst=`cat $HOME/Scripts/.dontsync/bysh_acct`
 remotehome=`cat $HOME/Scripts/.dontsync/bysh_home`
 
-local_dir=/mnt/MrU/Backups/JottaCloud_Backups/Byte/
+local_dir=/mnt/MrU/Backups/Plex/Byte/
 log=$HOME/Scripts/logs/log.backupByte
 remote_dir=$remotehome/backups/
 
