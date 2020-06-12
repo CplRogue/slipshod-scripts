@@ -17,8 +17,12 @@ remote_dir_tv=bac:Videos/Series/
 pushover_app=$HOME/Scripts/.dontsync/pushover_app_rclone
 pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 
+##Only use one
+#dryrun=--dry-run
+dryrun=
+
 #rclone Backups
-rclone sync $local_dir_backups $remote_dir_backups --backup-dir=bac:Delete/Backups --log-file=$log --log-level $level --exclude $exclude
+/usr/bin/rclone sync $local_dir_backups $remote_dir_backups --backup-dir=bac:Delete/Backups --log-file=$log --log-level $level --exclude $exclude $dryrun
 msg1=`cat $log | grep Transferred | tail -2 | head -1 | cut -f1,3 -d,`
 msg2=`cat $log | grep Transferred | tail -1`
 msg3=`cat $log | grep Elapsed | tail -1`
@@ -30,7 +34,8 @@ echo "::Data:: bac:Backups" > $message
 echo $msg1 >> $message
 echo $msg2 >> $message
 echo $msg3 >> $message
-echo $msg4 >> $message
+#ETA
+#echo $msg4 >> $message
 echo $msg5 >> $message
 echo $msg6 >> $message
 cat $message
@@ -42,7 +47,7 @@ curl -s \
   https://api.pushover.net/1/messages.json > /dev/null 2>&1
 
 #rclone tv series
-rclone sync $local_dir_tv $remote_dir_tv --backup-dir=bac:Delete/Videos/Series --log-file=$log --log-level $level --stats 5m --exclude $exclude --min-age 7d
+/usr/bin/rclone sync $local_dir_tv $remote_dir_tv --backup-dir=bac:Delete/Videos/Series --log-file=$log --log-level $level --stats 5m --exclude $exclude --min-age 7d $dryrun
 msg1=`cat $log | grep Transferred | tail -2 | head -1 | cut -f1,3 -d,`
 msg2=`cat $log | grep Transferred | tail -1`
 msg3=`cat $log | grep Elapsed | tail -1`
@@ -55,7 +60,8 @@ echo "::Data:: bac:Videos/Series" > $message
 echo $msg1 >> $message
 echo $msg2 >> $message
 echo $msg3 >> $message
-echo $msg4 >> $message
+#ETA
+#echo $msg4 >> $message
 echo $msg5 >> $message
 echo $msg6 >> $message
 echo $msg7 >> $message
@@ -68,7 +74,7 @@ curl -s \
   https://api.pushover.net/1/messages.json > /dev/null 2>&1
 
 #rclone mature
-rclone sync $local_dir_mature $remote_dir_mature --backup-dir=bac:Delete/Videos/Mature --log-file=$log --log-level $level --stats 5m --exclude $exclude --min-age 7d
+/usr/bin/rclone sync $local_dir_mature $remote_dir_mature --backup-dir=bac:Delete/Videos/Mature --log-file=$log --log-level $level --stats 5m --exclude $exclude --min-age 7d $dryrun
 msg1=`cat $log | grep Transferred | tail -2 | head -1 | cut -f1,3 -d,`
 msg2=`cat $log | grep Transferred | tail -1`
 msg3=`cat $log | grep Elapsed | tail -1`
@@ -81,7 +87,8 @@ echo "::Data:: bac:Videos/Mature" > $message
 echo $msg1 >> $message
 echo $msg2 >> $message
 echo $msg3 >> $message
-echo $msg4 >> $message
+#ETA
+#echo $msg4 >> $message
 echo $msg5 >> $message
 echo $msg6 >> $message
 echo $msg7 >> $message
@@ -94,12 +101,12 @@ curl -s \
   https://api.pushover.net/1/messages.json > /dev/null 2>&1
 
 #rclone movies
-rclone sync $local_dir_movies $remote_dir_movies --backup-dir=bac:Delete/Videos/Movies --log-file=$log --log-level $level --stats 5m --exclude $exclude
+/usr/bin/rclone sync $local_dir_movies $remote_dir_movies --backup-dir=bac:Delete/Videos/Movies --log-file=$log --log-level $level --stats 5m --exclude $exclude $dryrun
 msg1=`cat $log | grep Transferred | tail -2 | head -1 | cut -f1,3 -d,`
 msg2=`cat $log | grep Transferred | tail -1`
 msg3=`cat $log | grep Elapsed | tail -1`
 msg4=`cat $log | grep Transferred | tail -2 | head -1 | cut -f4 -d,`
-/usr/bin/rclone size bac:Vidoes/Movies > $size
+/usr/bin/rclone size bac:Videos/Movies > $size
 msg5=`cat $size | head -1`
 msg6=`cat $size | tail -1 | cut -f1-4 -d ' '`
 msg7=`cat $mrusize | grep Movies`
@@ -107,7 +114,8 @@ echo "::Data:: bac:Videos/Movies" > $message
 echo $msg1 >> $message
 echo $msg2 >> $message
 echo $msg3 >> $message
-echo $msg4 >> $message
+#ETA
+#echo $msg4 >> $message
 echo $msg5 >> $message
 echo $msg6 >> $message
 echo $msg7 >> $message
