@@ -9,12 +9,40 @@ log=$HOME/Scripts/logs/log.byte2home
 remote_dir_tv=$remotehome/torrents/completed/
 remote_dir_movies=$remotehome/torrents/movies/
 
-/usr/bin/killall rsync
+clear
+echo "####################################################################"
+echo "#                           Media Sync Script                      #"
+echo "####################################################################"
+echo " "
+echo " "
+echo " "
+echo " "
+echo "Pausing for 30 seconds to check that rsync is not already running"
+echo " "
+/usr/bin/killall rsync &>/dev/null
 sleep 15
-/usr/bin/killall rsync
-sleep 15
+/usr/bin/killall rsync &>/dev/null
+sleep 5
+echo "rsync is not running (or was killed!)"
+sleep 10 
 
 date >> $log
+
+clear
+echo "####################################################################"
+echo "#                           Media Sync Script                      #"
+echo "####################################################################"
+echo " "
+echo " "
+echo "Starting file transfer from Byte to Mr. Universe "
+date
+echo " "
+
+echo "TV Sync"
+echo " "
+echo "Files to transfer: "
+ssh $dst ls -R torrents/completed | grep -e .mkv -e .mp4
+echo " "
 echo "TV Sync" >> $log
 /usr/bin/rsync --remove-source-files --prune-empty-dirs --log-file=$log -rizcvIPe ssh  $dst:$remote_dir_tv $local_dir_tv 
 
@@ -23,18 +51,29 @@ date >> $log
 ssh $dst touch $remote_dir_tv/anchor.txt
 ssh $dst find $remote_dir_tv -type d -delete
 
+echo "TV Sync Finished"
+echo " "
+echo "TV Sync Finished" >> $log
+date
+
 date >> $log
+echo "Movie Sync"
+echo " "
+echo "Files to transfer: "
+ssh $dst ls -R torrents/movies | grep -e .mkv -e .mp4
+echo " "
 echo "Movie Sync" >> $log
 #/usr/bin/rsync --remove-source-files --prune-empty-dirs --log-file=$log -rizcvIP $dst:$remote_dir_movies $local_dir_movies 
 /usr/bin/rsync --remove-source-files --prune-empty-dirs --log-file=$log -rizcvIPe ssh $dst:$remote_dir_movies $local_dir_movies 
 
 date >> $log
+echo "Movie Sync Finished"
+echo "Movie Sync Finished" >> $log
 
-#ssh $dst touch $remote_dir_movies/anchor.txt
-#ssh $dst find $remote_dir_movies -type d -delete
+ssh $dst touch $remote_dir_movies/anchor.txt
+ssh $dst find $remote_dir_movies -type d -delete
 
 date >> $log
 echo "done" >> $log
 echo "Finished > Exiting" >> $log
 echo "" >> $log
-
