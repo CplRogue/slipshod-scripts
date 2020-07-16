@@ -1,9 +1,9 @@
 #!/bin/bash
 
 today=$(date +%Y%m%d-%H%M)
-file=$HOME/Scripts/TEST-CHANGEME
-temp=$HOME/Scripts/slipshod-scripts/filechanged/tmp
-backup=$HOME/Scripts/slipshod-scripts/filechanged/backup
+file=
+temp=$HOME/Scripts/bac_scripts/filechanged/tmp
+backup=$HOME/Scripts/bac_scripts/filechanged/backup
 new=$temp/new.txt
 old=$temp/old.txt
 updated=$temp/diff.txt
@@ -25,8 +25,7 @@ curl -s \
   --form-string "priority=0" \
   --form-string "message=`cat $message`" \
   https://api.pushover.net/1/messages.json > /dev/null 2>&1
-  cp $new $backup/$file_$today
+  cp $new $backup/$today
 else
   echo "$updated for Bind is zero."
 fi ;
-
