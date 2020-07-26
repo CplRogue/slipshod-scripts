@@ -18,13 +18,21 @@ echo " "
 echo " "
 echo " "
 echo "Pausing for 30 seconds to check that rsync is not already running"
-echo " "
-/usr/bin/killall rsync &>/dev/null
-sleep 15
 /usr/bin/killall rsync &>/dev/null
 sleep 5
-echo "rsync is not running (or was killed!)"
-sleep 10 
+echo "            25 seconds"
+sleep 5
+echo "            20 seconds"
+sleep 5
+echo "            15 seconds"
+/usr/bin/killall rsync &>/dev/null
+sleep 5
+echo "            10 seconds"
+sleep 5
+echo "             5 seconds"
+sleep 5
+echo "             0 seconds"
+sleep 1 
 
 date >> $log
 
@@ -63,7 +71,6 @@ echo "Files to transfer: "
 ssh $dst ls -R torrents/movies | grep -e .mkv -e .mp4
 echo " "
 echo "Movie Sync" >> $log
-#/usr/bin/rsync --remove-source-files --prune-empty-dirs --log-file=$log -rizcvIP $dst:$remote_dir_movies $local_dir_movies 
 /usr/bin/rsync --remove-source-files --prune-empty-dirs --log-file=$log -rizcvIPe ssh $dst:$remote_dir_movies $local_dir_movies 
 
 date >> $log
