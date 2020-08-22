@@ -1,6 +1,5 @@
 #!/bin/bash
 
-stats=`head -n 1 /home/pi/WeatherStats.txt | sed 's/\.//'`
 rainfall=`head -n 1 /home/pi/WeatherStats.txt`
 new=`head -n 1 /home/pi/WeatherStats.txt | sed 's/\.//'`
 old=/home/pi/Scripts/rain/tmp/old.txt
@@ -10,7 +9,6 @@ pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 
 echo " "
 echo Rainfall $rainfall
-echo Stats $stats
 echo New $new
 echo Old $(/bin/cat $old)
 echo " "
@@ -23,17 +21,16 @@ if (( $new > $(/bin/cat $old) )); then
       --form-string "token=`cat $pushover_app`" \
       --form-string "user=`cat $pushover_usr`" \
       --form-string "priority=1" \
-      --form-string "sound=bugle" \
       --form-string "message=`cat $msgs`" \
    https://api.pushover.net/1/messages.json
 fi
 
 echo " "
-echo Stats $stats
 echo New $new
+
+echo $new > $old
+
 echo Old $(/bin/cat $old)
 
-echo $stats > $old
-echo Old $(/bin/cat $old)
 exit 0
 
