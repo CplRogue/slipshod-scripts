@@ -1,3 +1,0 @@
-# slipshod-scripts
-Testing gitup
-
