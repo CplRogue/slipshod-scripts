@@ -3,6 +3,7 @@
 dst=`cat $HOME/Scripts/.dontsync/bysh_acct`
 remotehome=`cat $HOME/Scripts/.dontsync/bysh_home`
 
+local_temp_dir=/mnt/MrU/Working/zRsyncing/
 local_dir_tv=/mnt/MrU/Working/Sickrage/
 local_dir_movies=/mnt/MrU/Working/Movies/
 log=$HOME/Scripts/logs/log.byte2home
@@ -53,7 +54,7 @@ ssh $dst ls -R torrents/completed | grep -e .mkv -e .mp4
 echo " "
 echo "TV Sync" >> $log
 #/usr/bin/rsync --remove-source-files --prune-empty-dirs --log-file=$log -rizcvIPe ssh  $dst:$remote_dir_tv $local_dir_tv 
-/usr/bin/rsync --remove-source-files --prune-empty-dirs --log-file=$log -rzvIPe ssh --stats $dst:$remote_dir_tv $local_dir_tv 
+/usr/bin/rsync --remove-source-files --prune-empty-dirs --partial --temp-dir=$local_temp_dir --log-file=$log -rzvIPe ssh --stats $dst:$remote_dir_tv $local_dir_tv 
 
 date >> $log
 
@@ -73,7 +74,7 @@ ssh $dst ls -R torrents/movies | grep -e .mkv -e .mp4
 echo " "
 echo "Movie Sync" >> $log
 #/usr/bin/rsync --remove-source-files --prune-empty-dirs --log-file=$log -rizcvIPe ssh $dst:$remote_dir_movies $local_dir_movies 
-/usr/bin/rsync --remove-source-files --prune-empty-dirs --log-file=$log -rzvIPe ssh --stats $dst:$remote_dir_movies $local_dir_movies 
+/usr/bin/rsync --remove-source-files --prune-empty-dirs --partial --temp-dir=$local_temp_dir --log-file=$log -rzvIPe ssh --stats $dst:$remote_dir_movies $local_dir_movies 
 
 date >> $log
 echo "Movie Sync Finished"

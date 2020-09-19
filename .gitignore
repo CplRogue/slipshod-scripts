@@ -5,4 +5,5 @@ speedtest_cli.py
 .DS_Store
 .env
 latest.dep
+manual_run.txt
 tmp
