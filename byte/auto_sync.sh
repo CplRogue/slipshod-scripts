@@ -54,13 +54,13 @@ echo "Starting file transfer from Byte to Mr. Universe "
 date
 echo " "
 
-#echo "TV Sync"
-#echo " "
 echo "TV Files to transfer: "
 ssh $dst ls -R torrents/completed | grep -e .mkv -e .mp4
 echo " "
 echo "Movie Files to transfer: "
 ssh $dst ls -R torrents/movies | grep -e .mkv -e .mp4
+echo " "
+echo "TV Sync"
 echo " "
 echo "TV Sync" >> $log
 /usr/bin/rsync --remove-source-files --prune-empty-dirs --temp-dir=$local_temp_dir --log-file=$log -rzvIPe ssh --stats $dst:$remote_dir_tv $local_dir_tv 
