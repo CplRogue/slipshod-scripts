@@ -1,6 +1,6 @@
 #!/bin/bash
 
-secondary_drobo=/mnt/MrU/RcloneTest
+secondary_drobo=/mnt/Lenore
 
 log=$HOME/Scripts/logs/log.rclone-drobo
 message=$HOME/Scripts/drobo/tmp/last.msg

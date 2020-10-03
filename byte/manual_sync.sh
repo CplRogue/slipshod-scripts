@@ -111,6 +111,7 @@ echo "Movie Sync" >> $log
 /usr/bin/rsync --remove-source-files --prune-empty-dirs --temp-dir=$local_temp_dir --log-file=$log -rzvIPe ssh --stats $dst:$remote_dir_movies $local_dir_movies 
 
 date >> $log
+date
 echo "Movie Sync Finished"
 echo "Movie Sync Finished" >> $log
 
