@@ -1,7 +1,7 @@
 #!/bin/bash
 
-primary_drobo=/mnt/MrU
-secondary_drobo=/mnt/Lenore
+primary_drobo=/mnt/MrU/Videos
+secondary_drobo=/mnt/Lenore/Videos
 
 log=$HOME/Scripts/logs/log.rclone-drobo
 level=INFO
@@ -15,8 +15,8 @@ pushover_app=$HOME/Scripts/.dontsync/pushover_app_drobo
 pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 
 ##Only use one
-dryrun=--dry-run
-#dryrun=
+#dryrun=--dry-run
+dryrun=
 
 # Copy or Sync?
 copyorsync=copy
@@ -25,7 +25,7 @@ copyorsync=copy
 if [[ "`pidof -x $(basename $0) -o %PPID`" ]]; then exit; fi
 
 #rclone Backups
-/usr/bin/rclone $copyorsync $primary_drobo $secondary_drobo --log-file=$log --log-level $level --exclude $exclude $dryrun
+/usr/bin/rclone $copyorsync --retries 1 --size-only $primary_drobo $secondary_drobo --log-file=$log --log-level $level --exclude $exclude $dryrun
 
 #generate message
 msg1=`cat $log | grep Transferred | tail -2 | cut -f1-3 -d,`
