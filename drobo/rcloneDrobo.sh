@@ -1,7 +1,7 @@
 #!/bin/bash
 
-primary_drobo=/mnt/MrU/Videos
-secondary_drobo=/mnt/Lenore/Videos
+primary_drobo=/mnt/MrU
+secondary_drobo=/mnt/Lenore
 
 log=$HOME/Scripts/logs/log.rclone-drobo
 level=INFO
@@ -19,8 +19,8 @@ pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 dryrun=
 
 # Copy or Sync?
-copyorsync=copy
-#copyorsync=sync
+#copyorsync=copy
+copyorsync=sync
 
 if [[ "`pidof -x $(basename $0) -o %PPID`" ]]; then exit; fi
 
