@@ -2,7 +2,7 @@
 
 secondary_drobo=/mnt/Lenore
 
-log=$HOME/Scripts/logs/log.rclone-drobo
+log=$HOME/Scripts/logs/log.rsync-drobo
 message=$HOME/Scripts/drobo/tmp/last.msg
 size=$HOME/Scripts/drobo/tmp/last.size
 mrusize=$HOME/Scripts/size/tmp/last.size

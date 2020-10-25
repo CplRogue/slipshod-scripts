@@ -4,6 +4,8 @@ Primary_Drobo=/mnt/MrU/Videos/Mature/
 Secondary_Drobo=/mnt/Lenore/Videos/Mature/
 log=$HOME/Scripts/logs/log.rsync-drobo
 
+if [[ "`pidof -x $(basename $0) -o %PPID`" ]]; then exit; fi
+
 running=`ps auxww | grep -v .git | grep /usr/bin/rsync`
 clear
 echo "####################################################################"

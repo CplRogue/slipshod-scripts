@@ -54,7 +54,7 @@ echo "Backup Sync" >> $log
 echo "Backup Sync"
 echo " "
 #/usr/bin/rsync --remove-source-files --prune-empty-dirs --temp-dir=$local_temp_dir --log-file=$log -rzvIPe ssh --stats $dst:$remote_dir $local_dir 
-/usr/bin/rsync --temp-dir=$local_temp_dir --log-file=$log -rzvIPe ssh --stats $dst:$remote_dir $local_dir 
+/usr/bin/rsync --temp-dir=$local_temp_dir --log-file=$log -rvP --size-only --stats $dst:$remote_dir $local_dir 
 
 date >> $log
 
