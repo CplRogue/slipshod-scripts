@@ -1,5 +1,7 @@
 #!/bin/bash
 
+if [[ "`pidof -x $(basename $0) -o %PPID`" ]]; then exit; fi
+
 log=$HOME/Scripts/logs/log.rclone.initial
 message=$HOME/Scripts/rclone/tmp/last.msg
 size=$HOME/Scripts/rclone/tmp/last.size

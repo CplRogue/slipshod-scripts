@@ -10,6 +10,8 @@ log=$HOME/Scripts/logs/log.byte
 remote_dir_tv=$remotehome/torrents/completed/
 remote_dir_movies=$remotehome/torrents/movies/
 
+if [[ "`pidof -x $(basename $0) -o %PPID`" ]]; then exit; fi
+
 running=`ps auxww | grep -v .git | grep /usr/bin/rsync`
 clear
 echo "####################################################################"

@@ -8,6 +8,8 @@ local_dir=/mnt/MrU/Backups/Plex/Byte
 log=$HOME/Scripts/logs/log.byte
 remote_dir=$remotehome/backups/
 
+if [[ "`pidof -x $(basename $0) -o %PPID`" ]]; then exit; fi
+
 running=`ps auxww | grep -v .git | grep /usr/bin/rsync`
 clear
 echo "####################################################################"

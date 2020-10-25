@@ -23,6 +23,8 @@ pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 #dryrun=--dry-run
 dryrun=
 
+if [[ "`pidof -x $(basename $0) -o %PPID`" ]]; then exit; fi
+
 #rclone Backups
 /usr/bin/rclone sync $local_dir_backups $remote_dir_backups --backup-dir=bac:Delete/Backups --log-file=$log --log-level $level --exclude $exclude $dryrun
 #msg1=`cat $log | grep Transferred | tail -2 | head -1 | cut -f1,3 -d,`
