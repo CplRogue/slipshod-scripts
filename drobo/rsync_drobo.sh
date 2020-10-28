@@ -1,8 +1,18 @@
 #!/bin/bash
 
-Primary_Drobo=/mnt/MrU/Videos/Mature/
-Secondary_Drobo=/mnt/Lenore/Videos/Mature/
+Primary_Drobo=/mnt/MrU/
+Secondary_Drobo=/mnt/Lenore/
 log=$HOME/Scripts/logs/log.rsync-drobo
+message=$HOME/Scripts/drobo/tmp/rsynclast.msg
+#size=$HOME/Scripts/drobo/tmp/rsynclast.size
+mrusize=$HOME/Scripts/size/tmp/last.size
+pushover_app=$HOME/Scripts/.dontsync/pushover_app_drobo
+pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
+
+#Dry run
+#$dry=--dry-run
+$dry=-n
+#$dry=
 
 if [[ "`pidof -x $(basename $0) -o %PPID`" ]]; then exit; fi
 
@@ -37,11 +47,11 @@ date
 echo " "
 
 #/usr/bin/rsync --remove-source-files --prune-empty-dirs --temp-dir=$local_temp_dir --log-file=$log -rzvIPe ssh --stats $dst:$remote_dir_tv $local_dir_tv 
-#/usr/bin/rsync --dry-run --log-file=$log -rzvIPe --stats $Primary_Drobo $Secondary_Drobo 
-#/usr/bin/rsync --log-file=$log -rzvIPe --stats $Primary_Drobo $Secondary_Drobo 
-#/usr/bin/rsync --log-file=$log -rzvIP --stats $Primary_Drobo $Secondary_Drobo 
-#/usr/bin/rsync --log-file=$log -rvIP --stats $Primary_Drobo $Secondary_Drobo 
-/usr/bin/rsync --log-file=$log -rvP --size-only --stats $Primary_Drobo $Secondary_Drobo 
+
+#Dry Run
+/usr/bin/rsync --log-file=$log -n -rvP --size-only --stats --exclude=.DS_Store $Primary_Drobo $Secondary_Drobo 
+#For Real
+#/usr/bin/rsync --log-file=$log -rvP --size-only --stats --exclude=.DS_Store $Primary_Drobo $Secondary_Drobo 
 
 date >> $log
 

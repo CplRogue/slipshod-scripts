@@ -23,10 +23,14 @@ pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 #dryrun=--dry-run
 dryrun=
 
+## Copy or Sync?
+copyorsync=copy
+#copyorsync=sync
+
 if [[ "`pidof -x $(basename $0) -o %PPID`" ]]; then exit; fi
 
 #rclone Backups
-/usr/bin/rclone sync $local_dir_backups $remote_dir_backups --backup-dir=bac:Delete/Backups --log-file=$log --log-level $level --exclude $exclude $dryrun
+/usr/bin/rclone $copyorsync $local_dir_backups $remote_dir_backups --backup-dir=bac:Delete/Backups --log-file=$log --log-level $level --exclude $exclude $dryrun
 #msg1=`cat $log | grep Transferred | tail -2 | head -1 | cut -f1,3 -d,`
 msg1=`cat $log | grep Transferred | tail -2 | cut -f1-3 -d,`
 msg2=`cat $log | grep Transferred | tail -1`
@@ -57,8 +61,8 @@ curl -s \
 fi ;
 
 #rclone tv series
-#/usr/bin/rclone sync $local_dir_tv $remote_dir_tv --backup-dir=bac:Delete/Videos/Series --log-file=$log --log-level $level --stats 5m --exclude $exclude --min-age 7d $dryrun
-/usr/bin/rclone sync $local_dir_tv $remote_dir_tv --backup-dir=bac:Delete/Videos/Series --log-file=$log --log-level $level --stats 5m --exclude $exclude $dryrun
+/usr/bin/rclone $copyorsync $local_dir_tv $remote_dir_tv --backup-dir=bac:Delete/Videos/Series --log-file=$log --log-level $level --size-only --stats 5m --exclude $exclude --min-age 7d $dryrun
+#/usr/bin/rclone sync $local_dir_tv $remote_dir_tv --backup-dir=bac:Delete/Videos/Series --log-file=$log --log-level $level --stats 5m --exclude $exclude $dryrun
 #msg1=`cat $log | grep Transferred | tail -2 | head -1 | cut -f1,3 -d,`
 msg1=`cat $log | grep Transferred | tail -2 | cut -f1-3 -d,`
 msg2=`cat $log | grep Transferred | tail -1`
@@ -91,8 +95,8 @@ curl -s \
 fi ;
 
 #rclone mature
-#/usr/bin/rclone sync $local_dir_mature $remote_dir_mature --backup-dir=bac:Delete/Videos/Mature --log-file=$log --log-level $level --stats 5m --exclude $exclude --min-age 7d $dryrun
-/usr/bin/rclone sync $local_dir_mature $remote_dir_mature --backup-dir=bac:Delete/Videos/Mature --log-file=$log --log-level $level --stats 5m --exclude $exclude $dryrun
+/usr/bin/rclone $copyorsync $local_dir_mature $remote_dir_mature --backup-dir=bac:Delete/Videos/Mature --log-file=$log --log-level $level --size-only --stats 5m --exclude $exclude --min-age 7d $dryrun
+#/usr/bin/rclone sync $local_dir_mature $remote_dir_mature --backup-dir=bac:Delete/Videos/Mature --log-file=$log --log-level $level --stats 5m --exclude $exclude $dryrun
 #msg1=`cat $log | grep Transferred | tail -2 | head -1 | cut -f1,3 -d,`
 msg1=`cat $log | grep Transferred | tail -2 | cut -f1-3 -d,`
 msg2=`cat $log | grep Transferred | tail -1`
@@ -125,7 +129,7 @@ curl -s \
 fi ;
 
 #rclone movies
-/usr/bin/rclone sync $local_dir_movies $remote_dir_movies --backup-dir=bac:Delete/Videos/Movies --log-file=$log --log-level $level --stats 5m --exclude $exclude $dryrun
+/usr/bin/rclone $copyorsync $local_dir_movies $remote_dir_movies --backup-dir=bac:Delete/Videos/Movies --log-file=$log --log-level $level --size-only --stats 5m --exclude $exclude $dryrun
 #msg1=`cat $log | grep Transferred | tail -2 | head -1 | cut -f1,3 -d,`
 msg1=`cat $log | grep Transferred | tail -2 | cut -f1-3 -d,`
 msg2=`cat $log | grep Transferred | tail -1`
