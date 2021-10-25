@@ -15,7 +15,8 @@ wget -qO- https://nclottery.com/LuckyForLife > $lucky4life
 echo "grep ball"
 grep 'class="ball"' $lucky4life | head -n 5 | sed 's/[^0-9]*//g' | cut -c 5- > $numbers
 echo "grep powerball"
-grep 'class="ball luckyball"' $lucky4life | head -n 1 | sed 's/[^0-9]*//g' | cut -c 4- | sed 's/^/PB:/' > $l4lnumber
+#grep 'class="ball luckyball"' $lucky4life | head -n 1 | sed 's/[^0-9]*//g' | cut -c 4- | sed 's/^/PB:/' > $l4lnumber
+grep 'class="ball luckyball"' $lucky4life | head -n 1 | sed 's/.*\(..........\)/\1/' | sed 's/[^0-9]*//g' | sed 's/^/PB:/' > $l4lnumber
 echo "cat l4lnumber to numbers"
 cat $l4lnumber >> $numbers
 echo "cat numbers to ln-numbers"

@@ -24,8 +24,8 @@ pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 dryrun=
 
 ## Copy or Sync?
-copyorsync=copy
-#copyorsync=sync
+#copyorsync=copy
+copyorsync=sync
 
 if [[ "`pidof -x $(basename $0) -o %PPID`" ]]; then exit; fi
 

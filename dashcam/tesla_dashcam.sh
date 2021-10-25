@@ -4,14 +4,11 @@
 # https://github.com/ehendrix23/tesla_dashcam
 #
 
-oldfile=/mnt/MrU/Working/TeslaCam/Completed/SavedClips.mp4
-
 #/home/mal/.pyenv/shims/tesla_dashcam -h
 #/home/mal/.pyenv/shims/tesla_dashcam --check_for_update
 
 /home/mal/.pyenv/shims/tesla_dashcam --no-check_for_update --no-notification --motion_only --layout DIAMOND --mirror --skip_existing --temp_dir /home/mal/Scripts/dashcam/tmp --output /mnt/MrU/Working/TeslaCam/Completed /mnt/MrU/Working/TeslaCam/New
 
-mv $oldfile /mnt/MrU/Videos/TeslaCam/SavedClips/${oldfile}_$(date +%F-%T).mp4
 
 #Sorting Movies
 BASE=/mnt/MrU/Working/TeslaCam/Completed
@@ -44,10 +41,21 @@ echo "Day:"
 echo $dfol
 
 
-mkdir -p /mnt/MrU/Working/TeslaCam/Old/${yfol}/${mfol}
-mv /mnt/MrU/Working/TeslaCam/New/* /mnt/MrU/Working/TeslaCam/Old/${yfol}/${mfol}
-rmdir /mnt/MrU/Videos/TeslaCam/*.mp/*.mp4/*.mp4
+#Move and cleanip old files
+mkdir -p /mnt/MrU/Working/TeslaCam/Old/${yfol}/${mfol}/SavedClips
+mkdir -p /mnt/MrU/Working/TeslaCam/Old/${yfol}/${mfol}/SentryClips
+mv -f /mnt/MrU/Working/TeslaCam/New/SavedClips/* /mnt/MrU/Working/TeslaCam/Old/${yfol}/${mfol}/SavedClips/
+mv -f /mnt/MrU/Working/TeslaCam/New/SentryClips/* /mnt/MrU/Working/TeslaCam/Old/${yfol}/${mfol}/SentryClips/
+
+rm -rf /mnt/MrU/Videos/TeslaCam/*.mp/*.mp4/*.mp4
 rmdir /mnt/MrU/Videos/TeslaCam/*.mp/*.mp4
 rmdir /mnt/MrU/Videos/TeslaCam/*.mp
+rm -rf /mnt/MrU/Working/TeslaCam/Old/*.mp/*.mp4/SavedClips/*.mp4
+rmdir /mnt/MrU/Working/TeslaCam/Old/*.mp/*.mp4/SavedClips
+rm -rf /mnt/MrU/Working/TeslaCam/Old/*.mp/*.mp4/SentryClips/*.mp4
+rmdir /mnt/MrU/Working/TeslaCam/Old/*.mp/*.mp4/SentryClips
+rm -rf /mnt/MrU/Working/TeslaCam/Old/*.mp/*.mp4/*.mp4
+rmdir /mnt/MrU/Working/TeslaCam/Old/*.mp/*.mp4
+rmdir /mnt/MrU/Working/TeslaCam/Old/*.mp
 
 exit

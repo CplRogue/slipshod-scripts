@@ -4,13 +4,13 @@ dst=`cat $HOME/Scripts/.dontsync/bysh_acct`
 remotehome=`cat $HOME/Scripts/.dontsync/bysh_home`
 
 local_temp_dir=/mnt/MrU/Working/zRsyncing
-local_dir_tv=/mnt/MrU/Working/Sickrage/
+local_dir_tv=/mnt/MrU/Working/Rsynced/
 local_dir_movies=/mnt/MrU/Working/Movies/
 log=$HOME/Scripts/logs/log.byte
 remote_dir_tv=$remotehome/torrents/completed/
 remote_dir_movies=$remotehome/torrents/movies/
 
-if [[ "`pidof -x $(basename $0) -o %PPID`" ]]; then exit; fi
+if [[ "`pidof -x $(basename $0) -o %PPID`" ]]; then echo "Already running"; exit; fi
 
 running=`ps auxww | grep -v .git | grep /usr/bin/rsync`
 clear
