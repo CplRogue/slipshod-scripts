@@ -5,6 +5,7 @@ numbers=$HOME/Scripts/lotto/tmp/l4l-numbers.txt
 l4lnumber=$HOME/Scripts/lotto/tmp/l4l-number.txt
 lastnightnumbers=$HOME/Scripts/lotto/tmp/lnl4l-number.txt
 yournumbers=$HOME/Scripts/lotto/tmp/yourl4lnumbers.txt
+yournumberssorted=$HOME/Scripts/lotto/tmp/yourl4lnumbers-sorted.txt
 
 pushover_app=$HOME/Scripts/.dontsync/pushover_app_lotto
 pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
@@ -22,12 +23,18 @@ cat $l4lnumber >> $numbers
 echo "cat numbers to ln-numbers"
 cat $numbers | sed '$!s/$/, /' | tr -d '\n' > $lastnightnumbers
 
+winning=`comm -12 $numbers $yournumberssorted | wc -l | sed 's/ //g'`
+
 echo "create msg"
-echo "Last night's Lucky For Life Numbers:" > $msg
+#echo "Last night's Lucky For Life Numbers:" > $msg
+echo "Lucky For Life Matching Numbers: $winning" > $msg
+echo "Last Night's Numbers:" >> $msg
 cat $lastnightnumbers >> $msg
 echo " " >> $msg
 echo "Your Numbers:" >> $msg
 cat $yournumbers >> $msg
+#echo "Matching Numbers: $winning" >> $msg
+
 
 echo "send msg"
 curl -s \
