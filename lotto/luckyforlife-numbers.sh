@@ -23,7 +23,8 @@ cat $l4lnumber >> $numbers
 echo "cat numbers to ln-numbers"
 cat $numbers | sed '$!s/$/, /' | tr -d '\n' > $lastnightnumbers
 
-winning=`comm -12 $numbers $yournumberssorted | wc -l | sed 's/ //g'`
+#winning=`comm -12 $numbers $yournumberssorted | wc -l | sed 's/ //g'`
+winning=`grep -f  $numbers $yournumberssorted | wc -l | sed 's/ //g'`
 
 echo "create msg"
 #echo "Last night's Lucky For Life Numbers:" > $msg
