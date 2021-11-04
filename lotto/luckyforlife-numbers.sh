@@ -6,6 +6,8 @@ l4lnumber=$HOME/Scripts/lotto/tmp/l4l-number.txt
 lastnightnumbers=$HOME/Scripts/lotto/tmp/lnl4l-number.txt
 yournumbers=$HOME/Scripts/lotto/tmp/yourl4lnumbers.txt
 yournumberssorted=$HOME/Scripts/lotto/tmp/yourl4lnumbers-sorted.txt
+winninglist=$HOME/Scripts/lotto/tmp/winninglist.txt
+winninglistsorted=$HOME/Scripts/lotto/tmp/winninglistisorted.txt
 
 pushover_app=$HOME/Scripts/.dontsync/pushover_app_lotto
 pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
@@ -24,17 +26,22 @@ echo "cat numbers to ln-numbers"
 cat $numbers | sed '$!s/$/, /' | tr -d '\n' > $lastnightnumbers
 
 #winning=`comm -12 $numbers $yournumberssorted | wc -l | sed 's/ //g'`
-winning=`grep -f  $numbers $yournumberssorted | wc -l | sed 's/ //g'`
+#winning=`grep -f  $numbers $yournumberssorted | wc -l | sed 's/ //g'`
+winning=`grep -w -f  $numbers $yournumberssorted | wc -l | sed 's/ //g'`
+#winninglist=`grep -w -f  $numbers $yournumberssorted`
+grep -w -f  $numbers $yournumberssorted >$winninglist
+#winninglistsort=`paste -d, -s $winninglist`
+paste -d, -s $winninglist | sed 's/, */, /g' > $winninglistsorted
 
 echo "create msg"
-#echo "Last night's Lucky For Life Numbers:" > $msg
 echo "Lucky For Life Matching Numbers: $winning" > $msg
 echo "Last Night's Numbers:" >> $msg
 cat $lastnightnumbers >> $msg
 echo " " >> $msg
 echo "Your Numbers:" >> $msg
 cat $yournumbers >> $msg
-#echo "Matching Numbers: $winning" >> $msg
+echo "Matching Numbers:" >> $msg
+cat $winninglistsorted >> $msg
 
 
 echo "send msg"
