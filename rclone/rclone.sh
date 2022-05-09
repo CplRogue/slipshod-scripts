@@ -9,10 +9,14 @@ exist=$HOME/Scripts/rclone/tmp/exist
 motd=$HOME/Scripts/rclone/tmp/motd
 mrusize=$HOME/Scripts/size/tmp/last.size
 local_dir_backups=/mnt/MrU/Backups/Plex
+local_dir_anime=/mnt/MrU/Videos/Anime
+local_dir_kids=/mnt/MrU/Videos/Kids
 local_dir_mature=/mnt/MrU/Videos/Mature
 local_dir_movies=/mnt/MrU/Videos/Movies
 local_dir_tv=/mnt/MrU/Videos/Series
 remote_dir_backups=bac:Backups
+remote_dir_anime=bac:Videos/Anime/
+remote_dir_kids=bac:Videos/Kids/
 remote_dir_mature=bac:Videos/Mature/
 remote_dir_movies=bac:Videos/Movies/
 remote_dir_tv=bac:Videos/Series/
@@ -84,6 +88,170 @@ echo $msg7 >> $message
 cat $message | grep "Elapsed time: 0." > $exist
 if [[ -s $exist ]] ; then
   echo "$exist for Series is zero."
+else
+cat $message
+curl -s \
+  --form-string "token=`cat $pushover_app`" \
+  --form-string "user=`cat $pushover_usr`" \
+  --form-string "priority=-2" \
+  --form-string "message=`cat $message`" \
+  https://api.pushover.net/1/messages.json > /dev/null 2>&1
+fi ;
+
+#rclone anime
+/usr/bin/rclone $copyorsync $local_dir_anime $remote_dir_anime --backup-dir=bac:Delete/Videos/Anime --log-file=$log --log-level $level --size-only --stats 5m --exclude $exclude --min-age 7d $dryrun
+msg1=`cat $log | grep Transferred | tail -2 | cut -f1-3 -d,`
+msg2=`cat $log | grep Transferred | tail -1`
+msg3=`cat $log | grep Elapsed | tail -1`
+msg4=`cat $log | grep Transferred | tail -2 | head -1 | cut -f4 -d,`
+/usr/bin/rclone size bac:Videos/Anime > $size
+msg5=`cat $size | head -1`
+msg6=`cat $size | tail -1 | cut -f1-4 -d ' '`
+msg7=`cat $mrusize | grep Series`
+echo "::Data:: bac:Videos/Anime" > $message
+echo $msg1 >> $message
+echo $msg5 >> $message
+echo $msg6 >> $message
+echo $msg7 >> $message
+cat $message | grep "Elapsed time: 0." > $exist
+if [[ -s $exist ]] ; then
+  echo "$exist for Anime is zero."
+else
+cat $message
+curl -s \
+  --form-string "token=`cat $pushover_app`" \
+  --form-string "user=`cat $pushover_usr`" \
+  --form-string "priority=-2" \
+  --form-string "message=`cat $message`" \
+  https://api.pushover.net/1/messages.json > /dev/null 2>&1
+fi ;
+
+#rclone kids
+/usr/bin/rclone $copyorsync $local_dir_kids $remote_dir_kids --backup-dir=bac:Delete/Videos/Kids --log-file=$log --log-level $level --size-only --stats 5m --exclude $exclude --min-age 7d $dryrun
+msg1=`cat $log | grep Transferred | tail -2 | cut -f1-3 -d,`
+msg2=`cat $log | grep Transferred | tail -1`
+msg3=`cat $log | grep Elapsed | tail -1`
+msg4=`cat $log | grep Transferred | tail -2 | head -1 | cut -f4 -d,`
+/usr/bin/rclone size bac:Videos/Kids > $size
+msg5=`cat $size | head -1`
+msg6=`cat $size | tail -1 | cut -f1-4 -d ' '`
+msg7=`cat $mrusize | grep Series`
+echo "::Data:: bac:Videos/Kids" > $message
+echo $msg1 >> $message
+echo $msg5 >> $message
+echo $msg6 >> $message
+echo $msg7 >> $message
+cat $message | grep "Elapsed time: 0." > $exist
+if [[ -s $exist ]] ; then
+  echo "$exist for Kids is zero."
+else
+cat $message
+curl -s \
+  --form-string "token=`cat $pushover_app`" \
+  --form-string "user=`cat $pushover_usr`" \
+  --form-string "priority=-2" \
+  --form-string "message=`cat $message`" \
+  https://api.pushover.net/1/messages.json > /dev/null 2>&1
+fi ;
+
+#rclone mature
+/usr/bin/rclone $copyorsync $local_dir_mature $remote_dir_mature --backup-dir=bac:Delete/Videos/Mature --log-file=$log --log-level $level --size-only --stats 5m --exclude $exclude --min-age 7d $dryrun
+#/usr/bin/rclone sync $local_dir_mature $remote_dir_mature --backup-dir=bac:Delete/Videos/Mature --log-file=$log --log-level $level --stats 5m --exclude $exclude $dryrun
+#msg1=`cat $log | grep Transferred | tail -2 | head -1 | cut -f1,3 -d,`
+msg1=`cat $log | grep Transferred | tail -2 | cut -f1-3 -d,`
+msg2=`cat $log | grep Transferred | tail -1`
+#rclone mature
+/usr/bin/rclone $copyorsync $local_dir_mature $remote_dir_mature --backup-dir=bac:Delete/Videos/Mature --log-file=$log --log-level $level --size-only --stats 5m --exclude $exclude --min-age 7d $dryrun
+#/usr/bin/rclone sync $local_dir_mature $remote_dir_mature --backup-dir=bac:Delete/Videos/Mature --log-file=$log --log-level $level --stats 5m --exclude $exclude $dryrun
+#msg1=`cat $log | grep Transferred | tail -2 | head -1 | cut -f1,3 -d,`
+msg1=`cat $log | grep Transferred | tail -2 | cut -f1-3 -d,`
+msg2=`cat $log | grep Transferred | tail -1`
+#rclone kids
+/usr/bin/rclone $copyorsync $local_dir_kids $remote_dir_kids --backup-dir=bac:Delete/Videos/Kids --log-file=$log --log-level $level --size-only --stats 5m --exclude $exclude --min-age 7d $dryrun
+msg1=`cat $log | grep Transferred | tail -2 | cut -f1-3 -d,`
+msg2=`cat $log | grep Transferred | tail -1`
+msg3=`cat $log | grep Elapsed | tail -1`
+msg4=`cat $log | grep Transferred | tail -2 | head -1 | cut -f4 -d,`
+/usr/bin/rclone size bac:Videos/Kids > $size
+msg5=`cat $size | head -1`
+msg6=`cat $size | tail -1 | cut -f1-4 -d ' '`
+msg7=`cat $mrusize | grep Series`
+echo "::Data:: bac:Videos/Kids" > $message
+echo $msg1 >> $message
+echo $msg5 >> $message
+echo $msg6 >> $message
+echo $msg7 >> $message
+cat $message | grep "Elapsed time: 0." > $exist
+if [[ -s $exist ]] ; then
+  echo "$exist for Kids is zero."
+else
+cat $message
+curl -s \
+  --form-string "token=`cat $pushover_app`" \
+  --form-string "user=`cat $pushover_usr`" \
+  --form-string "priority=-2" \
+  --form-string "message=`cat $message`" \
+  https://api.pushover.net/1/messages.json > /dev/null 2>&1
+fi ;
+
+#rclone mature
+/usr/bin/rclone $copyorsync $local_dir_mature $remote_dir_mature --backup-dir=bac:Delete/Videos/Mature --log-file=$log --log-level $level --size-only --stats 5m --exclude $exclude --min-age 7d $dryrun
+#/usr/bin/rclone sync $local_dir_mature $remote_dir_mature --backup-dir=bac:Delete/Videos/Mature --log-file=$log --log-level $level --stats 5m --exclude $exclude $dryrun
+#msg1=`cat $log | grep Transferred | tail -2 | head -1 | cut -f1,3 -d,`
+msg1=`cat $log | grep Transferred | tail -2 | cut -f1-3 -d,`
+msg2=`cat $log | grep Transferred | tail -1`
+#rclone kids
+/usr/bin/rclone $copyorsync $local_dir_kids $remote_dir_kids --backup-dir=bac:Delete/Videos/Kids --log-file=$log --log-level $level --size-only --stats 5m --exclude $exclude --min-age 7d $dryrun
+msg1=`cat $log | grep Transferred | tail -2 | cut -f1-3 -d,`
+msg2=`cat $log | grep Transferred | tail -1`
+msg3=`cat $log | grep Elapsed | tail -1`
+msg4=`cat $log | grep Transferred | tail -2 | head -1 | cut -f4 -d,`
+/usr/bin/rclone size bac:Videos/Kids > $size
+msg5=`cat $size | head -1`
+msg6=`cat $size | tail -1 | cut -f1-4 -d ' '`
+msg7=`cat $mrusize | grep Series`
+echo "::Data:: bac:Videos/Kids" > $message
+echo $msg1 >> $message
+echo $msg5 >> $message
+echo $msg6 >> $message
+echo $msg7 >> $message
+cat $message | grep "Elapsed time: 0." > $exist
+if [[ -s $exist ]] ; then
+  echo "$exist for Kids is zero."
+else
+cat $message
+curl -s \
+  --form-string "token=`cat $pushover_app`" \
+  --form-string "user=`cat $pushover_usr`" \
+  --form-string "priority=-2" \
+  --form-string "message=`cat $message`" \
+  https://api.pushover.net/1/messages.json > /dev/null 2>&1
+fi ;
+
+#rclone mature
+/usr/bin/rclone $copyorsync $local_dir_mature $remote_dir_mature --backup-dir=bac:Delete/Videos/Mature --log-file=$log --log-level $level --size-only --stats 5m --exclude $exclude --min-age 7d $dryrun
+#/usr/bin/rclone sync $local_dir_mature $remote_dir_mature --backup-dir=bac:Delete/Videos/Mature --log-file=$log --log-level $level --stats 5m --exclude $exclude $dryrun
+#msg1=`cat $log | grep Transferred | tail -2 | head -1 | cut -f1,3 -d,`
+msg1=`cat $log | grep Transferred | tail -2 | cut -f1-3 -d,`
+msg2=`cat $log | grep Transferred | tail -1`
+#rclone kids
+/usr/bin/rclone $copyorsync $local_dir_kids $remote_dir_kids --backup-dir=bac:Delete/Videos/Kids --log-file=$log --log-level $level --size-only --stats 5m --exclude $exclude --min-age 7d $dryrun
+msg1=`cat $log | grep Transferred | tail -2 | cut -f1-3 -d,`
+msg2=`cat $log | grep Transferred | tail -1`
+msg3=`cat $log | grep Elapsed | tail -1`
+msg4=`cat $log | grep Transferred | tail -2 | head -1 | cut -f4 -d,`
+/usr/bin/rclone size bac:Videos/Kids > $size
+msg5=`cat $size | head -1`
+msg6=`cat $size | tail -1 | cut -f1-4 -d ' '`
+msg7=`cat $mrusize | grep Series`
+echo "::Data:: bac:Videos/Kids" > $message
+echo $msg1 >> $message
+echo $msg5 >> $message
+echo $msg6 >> $message
+echo $msg7 >> $message
+cat $message | grep "Elapsed time: 0." > $exist
+if [[ -s $exist ]] ; then
+  echo "$exist for Kids is zero."
 else
 cat $message
 curl -s \

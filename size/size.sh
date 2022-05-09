@@ -7,6 +7,8 @@ pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 #cd /mnt/MrU/Videos
 cd /mnt
 du -hs MrU/Videos > $size
+du -hs MrU/Videos/Anime >> $size
+du -hs MrU/Videos/Kids >> $size
 du -hs MrU/Videos/Mature >> $size
 du -hs MrU/Videos/Movies >> $size
 du -hs MrU/Videos/Series >> $size

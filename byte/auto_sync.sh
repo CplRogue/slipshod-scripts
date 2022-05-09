@@ -65,7 +65,8 @@ echo " "
 echo "TV Sync"
 echo " "
 echo "TV Sync" >> $log
-/usr/bin/rsync --remove-source-files --prune-empty-dirs --temp-dir=$local_temp_dir --log-file=$log -rzvIPe ssh --stats $dst:$remote_dir_tv $local_dir_tv 
+#/usr/bin/rsync --remove-source-files --prune-empty-dirs --temp-dir=$local_temp_dir --log-file=$log -rzvIPe ssh --stats $dst:$remote_dir_tv $local_dir_tv 
+/usr/bin/rsync --remove-source-files --prune-empty-dirs --temp-dir=$local_temp_dir --log-file=$log --stats --progress -rzv -e ssh $dst:$remote_dir_tv $local_dir_tv 
 
 date >> $log
 
@@ -84,7 +85,8 @@ echo "Files to transfer: "
 ssh $dst ls -R torrents/movies | grep -e .mkv -e .mp4
 echo " "
 echo "Movie Sync" >> $log
-/usr/bin/rsync --remove-source-files --prune-empty-dirs --temp-dir=$local_temp_dir --log-file=$log -rzvIPe ssh --stats $dst:$remote_dir_movies $local_dir_movies 
+#/usr/bin/rsync --remove-source-files --prune-empty-dirs --temp-dir=$local_temp_dir --log-file=$log -rzvIPe ssh --stats $dst:$remote_dir_movies $local_dir_movies 
+/usr/bin/rsync --remove-source-files --prune-empty-dirs --temp-dir=$local_temp_dir --log-file=$log --stats --progress -rz -e ssh $dst:$remote_dir_movies $local_dir_movies 
 
 date >> $log
 date
