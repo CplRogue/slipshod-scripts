@@ -25,9 +25,7 @@ remote_dir_music=/mnt/MrU/Music
 
 #settings="--stats --progress --delete-during --size-only -rzv"
 settings="--stats --progress --delete-during --max-delete=10 --size-only -rzv"
-settings2="--stats --progress --size-only -rzv"
 #dryrun=--dry-run
-dryrun2=--dry-run
 dryrun=
 
 if [[ "`pidof -x $(basename $0) -o %PPID`" ]]; then echo "Already running"; exit; fi
@@ -197,7 +195,7 @@ fi
 
 echo "Music Sync"
 echo "Music Sync" >> $log
-/usr/bin/rsync --temp-dir=$local_temp_dir --log-file=$log $settings2 -e 'ssh -p 4432' mal@home.thewares.net:$remote_dir_music $local_dir_music $dryrun2
+/usr/bin/rsync --temp-dir=$local_temp_dir --log-file=$log $settings -e 'ssh -p 4432' mal@home.thewares.net:$remote_dir_music $local_dir_music $dryrun
 #echo "Music Sync Disabled"
 date >> $log
 echo "Music Sync Finished"
