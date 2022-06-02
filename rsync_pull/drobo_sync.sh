@@ -123,8 +123,8 @@ fi
 
 echo "Kids Sync"
 echo "Kids Sync" >> $log
-#/usr/bin/rsync --temp-dir=$local_temp_dir --log-file=$log $settings -e 'ssh -p 4432' mal@home.thewares.net:$remote_dir_kids $local_dir $dryrun
-echo "Kids Sync Disabled"
+/usr/bin/rsync --temp-dir=$local_temp_dir --log-file=$log $settings -e 'ssh -p 4432' mal@home.thewares.net:$remote_dir_kids $local_dir $dryrun
+#echo "Kids Sync Disabled"
 date >> $log
 echo "Kids Sync Finished"
 date
@@ -147,8 +147,8 @@ fi
 
 echo "Anime Sync"
 echo "Anime Sync" >> $log
-#/usr/bin/rsync --temp-dir=$local_temp_dir --log-file=$log $settings -e 'ssh -p 4432' mal@home.thewares.net:$remote_dir_anime $local_dir $dryrun
-echo "Anime Sync Disabled"
+/usr/bin/rsync --temp-dir=$local_temp_dir --log-file=$log $settings -e 'ssh -p 4432' mal@home.thewares.net:$remote_dir_anime $local_dir $dryrun
+#echo "Anime Sync Disabled"
 date >> $log
 echo "Anime Sync Finished"
 date
