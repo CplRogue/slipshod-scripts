@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pinging=`ping -c 3 192.168.103.20`
+pinging=`ping -c 3 10.0.1.140`
 now=$HOME/Scripts/ping/tmp/wx_now.txt
 last=$HOME/Scripts/ping/tmp/wx_last.txt
 pushover_app=$HOME/Scripts/.dontsync/pushover_app_ping

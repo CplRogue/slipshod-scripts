@@ -1,6 +1,7 @@
 #!/bin/bash
 
-state=$(ssh pi@wx.local 'ls -al /home/pi/SkyWeather/state/WeatherStats.txt')
+#state=$(ssh pi@wx.local 'ls -al /home/pi/SkyWeather/state/WeatherStats.txt')
+state=$(ssh pi@10.0.1.140 'ls -al /home/pi/SkyWeather/state/WeatherStats.txt')
 now=$HOME/Scripts/ping/tmp/skyweather_state_now.txt
 last=$HOME/Scripts/ping/tmp/skyweather_state_last.txt
 stat=$HOME/Scripts/ping/tmp/skyweather_status.txt

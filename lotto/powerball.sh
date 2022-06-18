@@ -25,7 +25,9 @@ math3=`cat $math2 | rev | cut -c1- | rev`
 math4=`cat $math2 | awk '{printf "%.0f\n", $1}'`
 ksh -c 'echo $(('$math3'*0.57))' | awk '{print "After Taxes $"$0}' | awk '{print $0" Million"}' >> $msg
 
-if [ `echo $math4` -lt 350 ]; then
+echo $math4
+
+if [ `echo $math4` -lt 150 ]; then
 	exit
 fi
 
