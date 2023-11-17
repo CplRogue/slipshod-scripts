@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Pass the ip address or hostname when calling script
-pinging=`ping -c 3 $1`
+pinging=`ping -c 10 $1`
 
 msgs=$HOME/Scripts/ping/tmp/msgs.txt
 now=$HOME/Scripts/ping/tmp/now.txt
@@ -16,13 +16,13 @@ if grep -q "100% packet loss" "$now"; then
 	if grep -q "100% packet loss" "$last"; then
 		exit 0
 	else
-	echo "WX is down"
+	echo "WX is down: no ping returns"
    curl -s \
       --form-string "token=`cat $pushover_app`" \
       --form-string "user=`cat $pushover_usr`" \
       --form-string "sounf=spacealarm" \
       --form-string "priority=1" \
-      --form-string "message=WX is DOWN" \
+      --form-string "message=WX is DOWN: no ping returns" \
    https://api.pushover.net/1/messages.json
 	fi
 fi
@@ -32,13 +32,13 @@ if ! grep -q "100% packet loss" "$now"; then
 	if ! grep -q "100% packet loss" "$last"; then
 		exit 0
 	else
-	echo "WX is up"
+	echo "WX is up: pings return"
    curl -s \
       --form-string "token=`cat $pushover_app`" \
       --form-string "user=`cat $pushover_usr`" \
       --form-string "sounf=spacealarm" \
       --form-string "priority=1" \
-      --form-string "message=WX is UP" \
+      --form-string "message=WX is UP: pings return" \
    https://api.pushover.net/1/messages.json
 	fi
 fi

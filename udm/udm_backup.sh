@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
 ##################################################
 # set vars
@@ -37,7 +37,11 @@ EOF
 
 # Copy the Files
 echo "Retrieving Backups from UDM..."
-scp -r $udm_user@$udm_address:/mnt/data/unifi-os/unifi/data/backup/autobackup/* $backup_location/
+sshpass -p "pants party mower grill" scp -r $udm_user@$udm_address:/mnt/data/unifi-os/unifi/data/backup/autobackup/* $backup_location/
+#spawn scp -r $udm_user@$udm_address:/mnt/data/unifi-os/unifi/data/backup/autobackup/* $backup_location/
+#expect "assword:"
+#send "pants party mower grill\r"
+#interact
 
 # Compress
 #echo "Creating archive $backup_location/$backup_filename.zip..."

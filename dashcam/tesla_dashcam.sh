@@ -21,9 +21,14 @@ old=/mnt/MrU/Working/TeslaCam/Old
 #if  [ ! -d $input/SentryClips ]; then
 if  [ ! -d $input/SentryClips ]; then
     echo " "
-    echo "Files not found!, exiting"
+    echo "SentryClips not found..."
+	if  [ ! -d $input/SavedClips ]; then
+    	echo "SavedClips not found, exiting"
+        echo " "
+        exit 0
+	fi
+    echo "SavedClips found, continuing..."
     echo " "
-    exit 0
     fi
 }
 
