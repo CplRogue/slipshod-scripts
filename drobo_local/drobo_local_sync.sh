@@ -11,8 +11,12 @@ log=$HOME/Scripts/logs/log.rsynclocal
 
 MrU=/mnt/MrU/
 Lenore=/mnt/Lenore
+MrU2=/mnt/MrU/Working/TeslaCam/
+Lenore2=/mnt/Lenore/Working/TeslaCam
 
-settings="--stats --progress --exclude=Lenore.txt --exclude=MrU.txt --exclude=/Backups/ --exclude=/Do_Not_Sync/ --exclude=/Working/ --delete-during --size-only -rzv"
+settings="--stats --progress --exclude=Lenore.txt --exclude=MrU.txt --exclude=/.streams/ --exclude=/Do_Not_Sync/ --exclude=/Working/ --delete-during --size-only -rzv"
+settings2="--stats --progress --delete-during --size-only -rzv"
+#settings="--stats --progress --exclude=Lenore.txt --exclude=MrU.txt --exclude=/.streams/ --exclude=/Backups/ --exclude=/Do_Not_Sync/ --include=/Working/TeslaCam/ --exclude=/Working/ --delete-during --size-only -rzv"
 #settings="--stats --progress --delete-during --max-delete=10 --size-only -rzv"
 #dryrun=--dry-run
 dryrun=
@@ -65,6 +69,7 @@ echo " "
 echo "Drobo Local Sync"
 echo "Drobo Local Sync" >> $log
 /usr/bin/rsync --temp-dir=$local_temp_dir --log-file=$log $settings $MrU $Lenore $dryrun
+/usr/bin/rsync --temp-dir=$local_temp_dir --log-file=$log $settings2 $MrU2 $Lenore2 $dryrun
 #echo "Drobo Local Sync Disabled"
 date >> $log
 echo "Drobo Local Sync Finished"
