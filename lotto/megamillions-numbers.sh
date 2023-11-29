@@ -10,9 +10,11 @@ pushover_app=$HOME/Scripts/.dontsync/pushover_app_lotto
 pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 msg=$HOME/Scripts/lotto/tmp/mmmsg-numbers.txt
 
-wget -qO- https://nclottery.com/MegaMillions > $megamillions
-grep 'class="ball"' $megamillions | head -n 5 | sed 's/[^0-9]*//g' | cut -c 4- > $numbers
-grep 'class="ball megaball"' $megamillions | head -n 1 | sed 's/[^0-9]*//g' | cut -c 3- | sed 's/^/PB:/' > $mmnumber
+wget -qO- https://nclottery.com/mega-millions > $megamillions
+#grep 'class="ball"' $megamillions | head -n 5 | sed 's/[^0-9]*//g' | cut -c 4- > $numbers
+#grep 'class="ball megaball"' $megamillions | head -n 1 | sed 's/[^0-9]*//g' | cut -c 3- | sed 's/^/PB:/' > $mmnumber
+grep ResultsMegaMillions $megamillions | tail -n 7 | head -n 5 | cut -c 66- |  sed 's/[^0-9]*//g' > $numbers
+grep 'class="ball megaball"' $megamillions | head -n 1 | cut -c 66- | sed 's/[^0-9]*//g' | sed 's/^/PB:/' > $mmnumber
 cat $mmnumber >> $numbers
 cat $numbers | sed '$!s/$/, /' | tr -d '\n' > $lastnightnumbers
 
