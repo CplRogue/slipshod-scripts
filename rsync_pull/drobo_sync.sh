@@ -2,9 +2,10 @@
 
 #home.thewares.net set in /etc/hosts
 
-local_temp_dir=/mnt/Lenore/Working
+local_temp_dir=/mnt/Lenore/Temp
 local_dir=/mnt/Lenore/Videos/
 local_dir_music=/mnt/Lenore/Music
+local_dir_backup=/mnt/Lenore/Backups
 
 log=$HOME/Scripts/logs/log.rsyncpull
 
@@ -32,13 +33,13 @@ remote_dir_tv=/mnt/MrU/Videos/Series
 remote_dir_itv=/mnt/MrU/Videos/Series-International
 remote_dir_tesla=/mnt/MrU/Videos/TeslaCam
 remote_dir_movies=/mnt/MrU/Videos/Movies
-remote_dir_music=/mnt/MrU/Music
-remote_dir_backups=/mnt/MrU/Backups
+remote_dir_music=/mnt/MrU/Music/
+remote_dir_backups=/mnt/MrU/Backups/
 
 #settings="--stats --progress --delete-during --size-only -rzv"
 settings="--stats --progress --delete-during --max-delete=10 --size-only -rzv"
-#dryrun=--dry-run
 dryrun=
+#dryrun=--dry-run
 
 if [[ "`pidof -x $(basename $0) -o %PPID`" ]]; then echo "Already running"; exit; fi
 
@@ -335,7 +336,7 @@ fi
 
 echo "Backups Dir Sync"
 echo "Backups Dir Sync" >> $log
-/usr/bin/rsync --temp-dir=$local_temp_dir --log-file=$log $settings -e 'ssh -p 4432' mal@home.thewares.net:$remote_dir_backups $local_dir $dryrun
+/usr/bin/rsync --temp-dir=$local_temp_dir --log-file=$log $settings -e 'ssh -p 4432' mal@home.thewares.net:$remote_dir_backups $local_dir_backup $dryrun
 #echo "Backups Dir Sync Disabled"
 date >> $log
 echo "Backups Dir Sync Finished"
@@ -362,6 +363,7 @@ echo "Finished > Exiting" >> $log
 date >> $log
 echo "" >> $log
 
+sleep 15
 curl -s \
   --form-string "token=`cat $pushover_app`" \
   --form-string "user=`cat $pushover_usr`" \
