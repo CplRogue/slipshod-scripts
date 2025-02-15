@@ -1,9 +1,10 @@
 #!/bin/bash
 
 
-cd /mnt/MrU/Videos/Series
-#cd /mnt/MrU/Videos/Movies
-#cd /mnt/MrU/Videos/Mature
+#cd /mnt/Media/Videos
+#cd /mnt/Media/Videos/Anime
+#cd /mnt/Media/Videos/Movies
+#cd /mnt/Media/Videos/Mature
 
 #cd ~/Scripts/subtitles/test/
 
@@ -30,3 +31,4 @@ cd /mnt/MrU/Videos/Series
 #find . -type f -name "*.srt" -print0 | xargs -0 sed -i '/Captioned by/d'
 #find . -type f -name "*.srt" -print0 | xargs -0 sed -i '/wgbh.org/d'
 #find . -type f -name "*.srt" -print0 | xargs -0 sed -i '/flixify/d'
+find . -type f -name "*.srt" -print0 | xargs -0 sed -i '/torrentgalaxy/d'

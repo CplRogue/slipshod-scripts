@@ -3,8 +3,8 @@
 dst=`cat $HOME/Scripts/.dontsync/bysh_acct`
 remotehome=`cat $HOME/Scripts/.dontsync/bysh_home`
 
-local_temp_dir=/mnt/MrU/Working/zRsyncing
-local_dir=/mnt/MrU/Backups/Plex/Byte
+local_temp_dir=/mnt/Media/Working/zRsyncing
+local_dir=/mnt/Media/Backups/Plex/Byte
 log=$HOME/Scripts/logs/log.byte
 remote_dir=$remotehome/backups/
 
