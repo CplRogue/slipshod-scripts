@@ -24,56 +24,59 @@ message_backups=$HOME/Scripts/rsync_pull/tmp/backups.msg
 pushover_app=$HOME/Scripts/.dontsync/pushover_app_drobo
 pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 
-remote_dir_homemovies=/mnt/MrU/Videos/Home-Movies
-remote_dir_anime=/mnt/MrU/Videos/Anime
-remote_dir_kids=/mnt/MrU/Videos/Kids
-remote_dir_daily=/mnt/MrU/Videos/Daily
-remote_dir_mature=/mnt/MrU/Videos/Mature
-remote_dir_tv=/mnt/MrU/Videos/Series
-remote_dir_itv=/mnt/MrU/Videos/Series-International
-remote_dir_tesla=/mnt/MrU/Videos/TeslaCam
-remote_dir_movies=/mnt/MrU/Videos/Movies
-remote_dir_music=/mnt/MrU/Music/
-remote_dir_backups=/mnt/MrU/Backups/
+remote_dir_homemovies=/mnt/Media/Videos/Home-Movies
+remote_dir_anime=/mnt/Media/Videos/Anime
+remote_dir_kids=/mnt/Media/Videos/Kids
+remote_dir_daily=/mnt/Media/Videos/Daily
+remote_dir_mature=/mnt/Media/Videos/Mature
+remote_dir_tv=/mnt/Media/Videos/Series
+remote_dir_itv=/mnt/Media/Videos/Series-International
+remote_dir_tesla=/mnt/Media/Videos/TeslaCam
+remote_dir_movies=/mnt/Media/Videos/Movies
+remote_dir_music=/mnt/Media/Music/
+remote_dir_backups=/mnt/Media/Backups/
 
 #settings="--stats --progress --delete-during --size-only -rzv"
-settings="--stats --progress --delete-during --max-delete=10 --size-only -rzv"
-dryrun=
-#dryrun=--dry-run
+#settings="--stats --progress --delete-during --max-delete=10 --size-only -rzv"
+settings="--stats --progress --delete-during --size-only -rzv"
+#dryrun=
+dryrun=--dry-run
 
 if [[ "`pidof -x $(basename $0) -o %PPID`" ]]; then echo "Already running"; exit; fi
 
-running=`ps auxww | grep -v .git | grep /usr/bin/rsync`
-clear
-echo "####################################################################"
-echo "#                           Media Sync Script                      #"
-echo "####################################################################"
-echo " "
-echo " "
-echo " "
-echo " "
-echo "Checking to see if RSYNC is already running"
-echo " "
-sleep 1
-
-if [[ "$running" == *"pierus"* ]]
-   then
-	   echo "RSYNC is already runnning, exiting..."
-           echo " "
-           sleep 1
-	   exit 0
-   else	   
-	   echo "RSYNC not running, will continue in 5 seconds"
-	   sleep 1
-	   echo "                                    4 seconds"
-	   sleep 1
-	   echo "                                    3 seconds"
-	   sleep 1
-	   echo "                                    2 seconds"
-	   sleep 1
-	   echo "                                    1 second "
-	   sleep 1
-fi
+#running=`ps auxww | grep -v .git | grep /usr/bin/rsync`
+#clear
+#echo "####################################################################"
+#echo "#                           Media Sync Script                      #"
+#echo "####################################################################"
+#echo " "
+#echo " "
+#echo " "
+#echo " "
+#echo "Checking to see if RSYNC is already running"
+#echo " "
+#sleep 1
+#
+#echo $running
+#
+#if [[ "$running" == *"pierus"* ]]
+#   then
+#	   echo "RSYNC is already runnning, exiting..."
+#           echo " "
+#           sleep 1
+#	   exit 0
+#   else	   
+#	   echo "RSYNC not running, will continue in 5 seconds"
+#	   sleep 1
+#	   echo "                                    4 seconds"
+#	   sleep 1
+#	   echo "                                    3 seconds"
+#	   sleep 1
+#	   echo "                                    2 seconds"
+#	   sleep 1
+#	   echo "                                    1 second "
+#	   sleep 1
+#fi
 
 date >> $log
 
@@ -91,7 +94,7 @@ echo "#                           Media Sync Script                      #"
 echo "####################################################################"
 echo " "
 echo " "
-echo "Starting file transfer from Mr. Universe to Lenore"
+echo "Starting file transfer from QBC to Lenore"
 date
 echo " "
 echo "TV Sync"
@@ -363,7 +366,8 @@ echo "Finished > Exiting" >> $log
 date >> $log
 echo "" >> $log
 
-sleep 15
+sleep 60
+
 curl -s \
   --form-string "token=`cat $pushover_app`" \
   --form-string "user=`cat $pushover_usr`" \
