@@ -12,9 +12,9 @@ pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 msg=$HOME/Scripts/lotto/tmp/mmmsg.txt
 
 
-wget -qO- https://nclottery.com/megamillions > $megamillions
-grep MMPrize $megamillions > $prize
-grep MMCash $megamillions > $cash
+wget -qO- https://nclottery.com/mega-millions > $megamillions
+grep MMPrize $megamillions | head -n 1 > $prize
+grep MMCash $megamillions | head -n 1 > $cash
 
 echo "Tonight's Mega Millions Payout:" > $msg
 cat $prize | cut -d">" -f2 | rev | cut -c7- | rev | awk '{print "Jackpot "$0}' >> $msg

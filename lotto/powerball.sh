@@ -12,9 +12,9 @@ pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 msg=$HOME/Scripts/lotto/tmp/pbmsg.txt
 
 
-wget -qO- https://nclottery.com/Powerball > $powerball
-grep PBPrize $powerball > $prize
-grep PBCash $powerball > $cash
+wget -qO- https://nclottery.com/powerball > $powerball
+grep PBPrize $powerball | head -n 1 > $prize
+grep PBCash $powerball | head -n 1 > $cash
 
 echo "Tonight's Powerball Payout:" > $msg
 cat $prize | cut -d">" -f2 | rev | cut -c7- | rev | awk '{print "Jackpot "$0}' >> $msg

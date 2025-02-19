@@ -12,18 +12,23 @@ month=`date +"%Y-%m"`
 day=`date +"%Y-%m-%d"`
 
 tempdir=/home/mal/Scripts/dashcam/tmp
-input=/mnt/MrU/Working/TeslaCam/New
-output=/mnt/MrU/Videos/TeslaCam
-old=/mnt/MrU/Working/TeslaCam/Old
+input=/mnt/Media/Working/TeslaCam/New
+output=/mnt/Media/Videos/TeslaCam
+old=/mnt/Media/Working/TeslaCam/Old
 
 {
 #if  [ ! -f $input/*mp4 ]; then
 #if  [ ! -d $input/SentryClips ]; then
 if  [ ! -d $input/SentryClips ]; then
     echo " "
-    echo "Files not found!, exiting"
+    echo "SentryClips not found..."
+	if  [ ! -d $input/SavedClips ]; then
+    	echo "SavedClips not found, exiting"
+        echo " "
+        exit 0
+	fi
+    echo "SavedClips found, continuing..."
     echo " "
-    exit 0
     fi
 }
 

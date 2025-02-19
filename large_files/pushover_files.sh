@@ -18,10 +18,10 @@ pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 
 
 
-find /mnt/MrU/Videos/Series -type f -printf '%s %p\n' > $lf_new
+find /mnt/Media/Videos/Series -type f -printf '%s %p\n' > $lf_new
 cat $lf_new | sort -nr > $lf_sortsize
 
-cat $lf_sortsize | grep -v "Game of Thrones" | grep -v "Band of Brothers" | grep -v "Blue Planet II" > $lf_grepped
+cat $lf_sortsize | grep -v "The Grand Tour" | grep -v "Game of Thrones" | grep -v "Band of Brothers" | grep -v "Blue Planet II" > $lf_grepped
 
 cp $lf_head $lf_head_old
 cat $lf_grepped | head -10 | cut -d " " -f 3- | grep -v '^[0-9]' | sed 's/\//,/g' | sed 's/.*,//' > $lf_head
@@ -29,6 +29,8 @@ diff $lf_head $lf_head_old > $lf_diff
 
 
 echo "Change in large files in Series Directory on Drobo. Check to see if the new large files should be replaced." > $lf_msg
+#Next line new:
+cat $lf_diff >> $ls_msg
 
 if [[ -s $lf_diff ]] ; then
 echo "$lf_diff has data."

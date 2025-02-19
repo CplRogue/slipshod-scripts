@@ -14,9 +14,10 @@ pushover_usr=$HOME/Scripts/.dontsync/pushover_usr
 msg=$HOME/Scripts/lotto/tmp/l4lmsg-numbers.txt
 
 echo "wget"
-wget -qO- https://nclottery.com/LuckyForLife > $lucky4life
-echo "grep ball"
-grep 'class="ball"' $lucky4life | head -n 5 | sed 's/[^0-9]*//g' | cut -c 5- > $numbers
+wget -qO- https://nclottery.com/lucky-for-life > $lucky4life
+echo "grep ResultsLuckyForLife"
+#grep ResultsLuckyForLife $lucky4life | head -n 8 | sed 's/[^0-9]*//g' | cut -c 8- > $numbers
+grep ResultsLuckyForLife $lucky4life | tail -n 6 | head -n 5 | cut -c 76- | sed 's/[^0-9]*//g' > $numbers
 echo "grep powerball"
 #grep 'class="ball luckyball"' $lucky4life | head -n 1 | sed 's/[^0-9]*//g' | cut -c 4- | sed 's/^/PB:/' > $l4lnumber
 grep 'class="ball luckyball"' $lucky4life | head -n 1 | sed 's/.*\(..........\)/\1/' | sed 's/[^0-9]*//g' | sed 's/^/PB:/' > $l4lnumber
