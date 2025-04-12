@@ -12,9 +12,10 @@ month=`date +"%Y-%m"`
 day=`date +"%Y-%m-%d"`
 
 tempdir=/home/mal/Scripts/dashcam/tmp
-input=/mnt/Media/Working/TeslaCam/New
-output=/mnt/Media/Videos/TeslaCam
+#input=/mnt/Media/Working/TeslaCam/New
+input=/home/mal/Videos/Tesla_Dashcam/New
 old=/mnt/Media/Working/TeslaCam/Old
+output=/mnt/Media/Videos/TeslaCam
 
 {
 #if  [ ! -f $input/*mp4 ]; then

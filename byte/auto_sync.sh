@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rsyncy=/home/mal/.local/bin/rsyncy
+
 dst=`cat $HOME/Scripts/.dontsync/bysh_acct`
 remotehome=`cat $HOME/Scripts/.dontsync/bysh_home`
 
@@ -32,11 +34,7 @@ if [[ "$running" == *"pierus"* ]]
            sleep 1
 	   exit 0
    else	   
-	   echo "RSYNC not running, will continue in 5 seconds"
-	   sleep 1
-	   echo "                                    4 seconds"
-	   sleep 1
-	   echo "                                    3 seconds"
+	   echo "RSYNC not running, will continue in 3 seconds"
 	   sleep 1
 	   echo "                                    2 seconds"
 	   sleep 1
@@ -52,7 +50,7 @@ echo "#                           Media Sync Script                      #"
 echo "####################################################################"
 echo " "
 echo " "
-echo "Starting file transfer from Byte to Mr. Universe "
+echo "Starting file transfer from Byte to QBC  "
 date
 echo " "
 
@@ -65,8 +63,7 @@ echo " "
 echo "TV Sync"
 echo " "
 echo "TV Sync" >> $log
-#/usr/bin/rsync --remove-source-files --prune-empty-dirs --temp-dir=$local_temp_dir --log-file=$log -rzvIPe ssh --stats $dst:$remote_dir_tv $local_dir_tv 
-/usr/bin/rsync --remove-source-files --prune-empty-dirs --temp-dir=$local_temp_dir --log-file=$log --stats --progress -rzv -e ssh $dst:$remote_dir_tv $local_dir_tv 
+$rsyncy --remove-source-files --prune-empty-dirs --temp-dir=$local_temp_dir --log-file=$log -r -e ssh $dst:$remote_dir_tv $local_dir_tv 
 
 date >> $log
 
@@ -87,8 +84,7 @@ echo "Files to transfer: "
 ssh $dst ls -R torrents/movies | grep -e .mkv -e .mp4
 echo " "
 echo "Movie Sync" >> $log
-#/usr/bin/rsync --remove-source-files --prune-empty-dirs --temp-dir=$local_temp_dir --log-file=$log -rzvIPe ssh --stats $dst:$remote_dir_movies $local_dir_movies 
-/usr/bin/rsync --remove-source-files --prune-empty-dirs --temp-dir=$local_temp_dir --log-file=$log --stats --progress -rz -e ssh $dst:$remote_dir_movies $local_dir_movies 
+$rsyncy --remove-source-files --prune-empty-dirs --temp-dir=$local_temp_dir --log-file=$log -r -e ssh $dst:$remote_dir_movies $local_dir_movies 
 
 date >> $log
 date
